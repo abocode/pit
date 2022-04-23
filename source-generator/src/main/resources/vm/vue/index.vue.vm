@@ -314,7 +314,7 @@
 #end
 #if($column.pk || $javaField == ${subTableFkclassName})
 #elseif($column.list && "" != $javaField)
-          <el-table-column label="$comment" prop="${javaField}">
+          <el-table-column label="$comment" prop="${javaField}" align="center">
             <template slot-scope="scope">
               <el-input v-model="scope.row.$javaField" placeholder="请输入$comment" />
             </template>
