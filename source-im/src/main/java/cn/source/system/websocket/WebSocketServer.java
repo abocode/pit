@@ -37,16 +37,6 @@ public class WebSocketServer
     }
 
     /**
-     * 注入消息service
-     */
-   /* private static ICmsMsgService cmsMsgService;
-
-    @Autowired
-    public void setCmsMsgService(ICmsMsgService cmsMsgService) {
-        this.cmsMsgService = cmsMsgService;
-    }*/
-
-    /**
      * 默认最多允许同时在线人数1000
      */
     public static int socketMaxOnlineCount = 1000;
@@ -118,26 +108,15 @@ public class WebSocketServer
     public void onMessage(String message, Session session)
     {
         if(message.length()>80){
-            //先暂定字符大于80为ticket,后面把message定位为json，进行类型判断
+            //先暂定字符大于80为ticket,后面把message设置为json，进行类型判断
             // key=message=ticket DateUtils.getDate()+":" 文件夹形式存储
             String ticketCacheKey= DateUtils.getDate()+":"+message;
             redisCache.setCacheObject(ticketCacheKey,session.getId(),30,TimeUnit.MINUTES);
         }else{
-            String msg = message.replace("你", "我").replace("吗", "");
-            LOGGER.info("\n 连接信息 - {}", session.getId());
-            LOGGER.info("\n 收到消息 - {}", message);
             // // 收到消息写入数据表中 -------- 这样耦合严重，且出现循环依赖问题，后面使用Mq解决
-            // CmsMsg cmsMsg = new CmsMsg();
-            // cmsMsg.setMsgType(MsgConstant.SYS_USER);
-            // cmsMsg.setMsgContent(message);
-            // cmsMsg.setAvatar(MsgConstant.USER_AVATAR);
-            // cmsMsg.setMsgFromSession(session.getId());
-            // // 查询管理员的session,set到tosession
-            // cmsMsgService.insertCmsMsg(cmsMsg);
             // 回消息
-            msg = "客服不在线，请添加经理微信(187-2098-9281)";
+            String msg = "客服不在线，请添加经理微信(187-2098-9281)";
             WebSocketUsers.sendMessageToUserByText(session, msg);
         }
     }
-
 }
