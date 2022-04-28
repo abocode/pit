@@ -274,9 +274,12 @@
         <module>source-im</module>
         <!--新增工作流模块-->
         <module>source-flow</module>
-        <!--wms-->
+        <!--新增wms模块-->
         <module>source-wms</module>
+        <!--新增love模块-->
         <module>source-love</module>
+        <!--新增mall模块-->
+        <module>source-mall</module>
     </modules>
     <packaging>pom</packaging>
 

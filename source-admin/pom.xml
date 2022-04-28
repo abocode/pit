@@ -109,6 +109,12 @@
             <groupId>cn.source</groupId>
             <artifactId>source-love</artifactId>
         </dependency>
+
+        <!-- 购物-->
+        <dependency>
+            <groupId>cn.source</groupId>
+            <artifactId>source-mall</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

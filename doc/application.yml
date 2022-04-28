@@ -70,7 +70,7 @@ spring:
     # 数据库索引
     database: 0
     # 密码
-    password: 
+    password:
     # 连接超时时间
     timeout: 10s
     lettuce:
@@ -128,3 +128,7 @@ sms:
   id: 换你自己的
   pwd: 换你自己的
   template: 换你自己的
+  # wx
+  appId: 换你自己的
+  secret: 换你自己的
+  accessTokenKey: 换你自己的
