@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.source.system.mapper.MallClassifyMapper">
-    
+
     <resultMap type="MallClassify" id="MallClassifyResult">
         <result property="id"    column="id"    />
         <result property="parentId"    column="parent_id"    />
@@ -25,17 +25,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
     <select id="selectMallClassifyList" parameterType="MallClassify" resultMap="MallClassifyResult">
         <include refid="selectMallClassifyVo"/>
-        <where>  
+        <where>
             <if test="classifyName != null  and classifyName != ''"> and classify_name like concat('%', #{classifyName}, '%')</if>
             <if test="normalDisable != null  and normalDisable != ''"> and normal_disable = #{normalDisable}</if>
+            <if test="parentId != null"> and parent_Id = #{parentId}</if>
         </where>
+        order by sort_no
     </select>
-    
+
     <select id="selectMallClassifyById" parameterType="Long" resultMap="MallClassifyResult">
         <include refid="selectMallClassifyVo"/>
         where id = #{id}
     </select>
-        
+
     <insert id="insertMallClassify" parameterType="MallClassify" useGeneratedKeys="true" keyProperty="id">
         insert into mall_classify
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -89,7 +91,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </delete>
 
     <delete id="deleteMallClassifyByIds" parameterType="String">
-        delete from mall_classify where id in 
+        delete from mall_classify where id in
         <foreach item="id" collection="array" open="(" separator="," close=")">
             #{id}
         </foreach>
