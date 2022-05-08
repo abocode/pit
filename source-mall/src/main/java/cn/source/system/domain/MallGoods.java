@@ -62,8 +62,23 @@ public class MallGoods extends BaseEntity
     @Excel(name = "是否上架")
     private String status;
 
+    /** 是否上架 */
+    @Excel(name = "是否热点")
+    private String hotStatus;
+
+    /** 浏览量 */
+    private Integer goodsView;
+
     /** 商品规格信息 */
     private List<MallGoodsSpec> mallGoodsSpecList;
+
+    public String getHotStatus() {
+        return hotStatus;
+    }
+
+    public void setHotStatus(String hotStatus) {
+        this.hotStatus = hotStatus;
+    }
 
     public void setId(Long id)
     {
@@ -182,6 +197,14 @@ public class MallGoods extends BaseEntity
     public void setMallGoodsSpecList(List<MallGoodsSpec> mallGoodsSpecList)
     {
         this.mallGoodsSpecList = mallGoodsSpecList;
+    }
+
+    public Integer getGoodsView() {
+        return goodsView;
+    }
+
+    public void setGoodsView(Integer goodsView) {
+        this.goodsView = goodsView;
     }
 
     @Override
