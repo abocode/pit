@@ -39,13 +39,13 @@ public class MallApiController extends BaseController {
     @GetMapping("/findMallIndexList")
     public AjaxResult findMallIndexList(MallAdvert mallAdvert, MallNavigate mallNavigate, MallGoods mallGoods)
     {
-        // 分页
-        startPage();
         MallIndex mllIndex = new MallIndex();
         /**广告*/
         mllIndex.setAdvertList(mallAdvertService.selectMallAdvertList(mallAdvert));
         /**导航*/
         mllIndex.setNavigateList(mallNavigateService.selectMallNavigateList(mallNavigate));
+        // 分页
+        startPage();
         /**商品*/
         mllIndex.setGoodsList(mallGoodsService.selectMallGoodsList(mallGoods));
         return AjaxResult.success(mllIndex);
