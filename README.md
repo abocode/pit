@@ -64,10 +64,13 @@
 9.  [更多精彩内容](https://sourcebyte.cn)
 
 ### 平台架构
+![输入图片说明](https://gitee.com/open-source-byte/source-mall/raw/master/doc/boot0.png)
 
 ### 整体架构
+![输入图片说明](https://gitee.com/open-source-byte/source-mall/raw/master/doc/boot1.png)
 
 ### 技术架构
+![输入图片说明](https://gitee.com/open-source-byte/source-mall/raw/master/doc/boot2.png)
 
 ### 番外篇
 
