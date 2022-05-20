@@ -59,9 +59,8 @@
 4.  [智慧相亲](http://47.243.114.191:8080/love)
 5.  [智慧电商](https://sourcebyte.cn)
 6.  [智慧仓储](https://sourcebyte.cn)
-7.  [智慧医疗](https://sourcebyte.cn)
-8.  [智慧家居](http://47.243.114.191:8080/home)
-9.  [更多精彩内容](https://sourcebyte.cn)
+7.  [智慧家居](http://47.243.114.191:8080/home)
+8.  [更多精彩内容](https://sourcebyte.cn)
 
 ### 平台架构
 ![输入图片说明](https://gitee.com/open-source-byte/source-mall/raw/master/doc/boot0.png)
