@@ -1,5 +1,6 @@
 package cn.source.system.controller;
 
+import cn.source.common.constant.HttpStatus;
 import cn.source.common.core.controller.BaseController;
 import cn.source.common.core.domain.AjaxResult;
 import cn.source.common.core.page.TableDataInfo;
@@ -11,6 +12,7 @@ import cn.source.system.service.IMallNavigateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -82,6 +84,19 @@ public class MallApiController extends BaseController {
             classify.setChildren(mallClassifyService.selectMallClassifyList(child));
         }
         return getDataTable(classifyList);
+    }
+
+
+    /**
+     * @Description: 获取商品信息by id
+     */
+    @GetMapping("/findGoodsById")
+    public AjaxResult findGoodsById(@RequestParam Long id)
+    {
+        String msg = "商品查找成功";
+        MallGoods mallGoods = mallGoodsService.selectMallGoodsById(id);
+        AjaxResult ajaxResult = new AjaxResult(HttpStatus.SUCCESS,msg,mallGoods);
+        return ajaxResult;
     }
 
 
