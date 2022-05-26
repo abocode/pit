@@ -8,7 +8,7 @@ ruoyi:
   copyrightYear: 2022
   # 实例演示开关
   demoEnabled: true
-  # 文件路径 示例（ Windows配置D:/ruoyi/uploadPath，Linux配置 /home/ruoyi/uploadPath）
+  # 文件路径 示例（ Windows配置C:/source-vue/static/uploadPath，Linux配置 /home/source-vue/uploadPath）
   profile: C:/source-vue/static/uploadPath
   # 获取ip地址开关
   addressEnabled: true
@@ -124,6 +124,7 @@ xss:
   # 匹配链接
   urlPatterns: /system/*,/monitor/*,/tool/*
 
+# 短信&微信配置
 sms:
   id: 换你自己的
   pwd: 换你自己的
