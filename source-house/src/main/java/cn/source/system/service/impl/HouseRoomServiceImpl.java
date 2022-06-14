@@ -135,10 +135,10 @@ public class HouseRoomServiceImpl implements IHouseRoomService
             houseRoom.setStartDate(new Date());
         }
         houseRoom.setCode(CodeUtil.getCodeByUUId());
+        houseRoom.setFaceUrl(houseRoom.getImageList().get(0).getImgUrl());
         houseRoomMapper.insertHouseRoom(houseRoom);
         houseRoomMapper.insertHouseFeature(houseRoom);
         houseRoomMapper.insertHouseImage(houseRoom);
-        houseRoom.setFaceUrl(houseRoom.getImageList().get(0).getImgUrl());
         return houseRoomMapper.updateHouseRoom(houseRoom);
     }
 
