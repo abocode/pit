@@ -54,13 +54,13 @@
 ### 内置业务功能 
 
 1.  [内容管理](https://sourcebyte.cn)
-2.  [智慧租房](http://47.243.114.191:8080/house)
-3.  [智慧党建](http://8.141.150.22)
-4.  [智慧相亲](http://47.243.114.191:8080/love)
-5.  [智慧电商](https://sourcebyte.cn)
-6.  [智慧仓储](https://sourcebyte.cn)
-7.  [智慧家居](http://47.243.114.191:8080/home)
-8.  [更多业务功能](https://sourcebyte.cn)
+2.  [租房程序](http://47.243.114.191:8080/house)
+3.  [开源商城](https://sourcebyte.cn)
+4.  [开源WMS](https://sourcebyte.cn)
+5.  [智慧党建](http://8.141.150.22)
+6.  [相亲社区](http://47.243.114.191:8080/love)
+7.  [家居服务](http://47.243.114.191:8080/home)
+8.  [更多业务](https://sourcebyte.cn)
 
 ### 平台架构
 ![输入图片说明](https://gitee.com/open-source-byte/source-mall/raw/master/doc/boot0.png)
