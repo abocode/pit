@@ -98,5 +98,4 @@ public class MallApiController extends BaseController {
         AjaxResult ajaxResult = new AjaxResult(HttpStatus.SUCCESS,msg,mallGoods);
         return ajaxResult;
     }
-
 }
