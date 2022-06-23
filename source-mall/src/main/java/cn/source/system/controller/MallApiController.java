@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * @Description: cms api控制类
+ * @Description: mall api控制类
  * @author: 詹Sir
  */
 @RestController
@@ -98,6 +98,5 @@ public class MallApiController extends BaseController {
         AjaxResult ajaxResult = new AjaxResult(HttpStatus.SUCCESS,msg,mallGoods);
         return ajaxResult;
     }
-
 
 }
