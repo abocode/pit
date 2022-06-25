@@ -16,7 +16,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="orderStatus"    column="order_status"    />
         <result property="sortNo"    column="sort_no"    />
         <result property="userId"    column="user_id"    />
-        <result property="addressId"    column="address_id"    />
+        <result property="receiver"    column="receiver"    />
+        <result property="receiverPhone"    column="receiver_Phone"    />
+        <result property="receiverAddress"    column="receiver_Address"    />
         <result property="createBy"    column="create_by"    />
         <result property="createTime"    column="create_time"    />
         <result property="updateBy"    column="update_by"    />
@@ -25,7 +27,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectMallOrderVo">
-        select id, order_code, order_create_time, pay_amount, pay_method, pay_time, pay_status, dis_amount, order_status, sort_no, user_id, address_id, create_by, create_time, update_by, update_time, remark from mall_order
+        select id, order_code, order_create_time, pay_amount, pay_method, pay_time, pay_status, dis_amount, order_status, sort_no, user_id,
+        receiver, receiver_Phone, receiver_Address, create_by, create_time, update_by, update_time, remark from mall_order
     </sql>
 
     <select id="selectMallOrderList" parameterType="MallOrder" resultMap="MallOrderResult">
@@ -56,7 +59,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="orderStatus != null and orderStatus != ''">order_status,</if>
             <if test="sortNo != null">sort_no,</if>
             <if test="userId != null">user_id,</if>
-            <if test="addressId != null">address_id,</if>
+            <if test="receiver != null">receiver,</if>
+            <if test="receiverPhone != null">receiver_Phone,</if>
+            <if test="receiverAddress != null">receiver_Address,</if>
             <if test="createBy != null">create_by,</if>
             <if test="createTime != null">create_time,</if>
             <if test="updateBy != null">update_by,</if>
@@ -74,7 +79,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="orderStatus != null and orderStatus != ''">#{orderStatus},</if>
             <if test="sortNo != null">#{sortNo},</if>
             <if test="userId != null">#{userId},</if>
-            <if test="addressId != null">#{addressId},</if>
+            <if test="receiver != null">#{receiver},</if>
+            <if test="receiverPhone != null">#{receiverPhone},</if>
+            <if test="receiverAddress != null">#{receiverAddress},</if>
             <if test="createBy != null">#{createBy},</if>
             <if test="createTime != null">#{createTime},</if>
             <if test="updateBy != null">#{updateBy},</if>
@@ -96,7 +103,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="orderStatus != null and orderStatus != ''">order_status = #{orderStatus},</if>
             <if test="sortNo != null">sort_no = #{sortNo},</if>
             <if test="userId != null">user_id = #{userId},</if>
-            <if test="addressId != null">address_id = #{addressId},</if>
+            <if test="receiver != null">receiver = #{receiver},</if>
+            <if test="receiverPhone != null">receiver_Phone = #{receiverPhone},</if>
+            <if test="receiverAddress != null">receiver_Address = #{receiverAddress},</if>
             <if test="createBy != null">create_by = #{createBy},</if>
             <if test="createTime != null">create_time = #{createTime},</if>
             <if test="updateBy != null">update_by = #{updateBy},</if>

@@ -61,8 +61,14 @@ public class MallOrder extends BaseEntity
     /** 用户id */
     private Long userId;
 
-    /** 地址Id */
-    private Long addressId;
+    /** 收货人 */
+    private String receiver;
+
+    /** 收货人电话 */
+    private String receiverPhone;
+
+    /** 收货地址 */
+    private String receiverAddress;
 
     public void setId(Long id)
     {
@@ -163,14 +169,29 @@ public class MallOrder extends BaseEntity
     {
         return userId;
     }
-    public void setAddressId(Long addressId)
-    {
-        this.addressId = addressId;
+
+    public String getReceiver() {
+        return receiver;
     }
 
-    public Long getAddressId()
-    {
-        return addressId;
+    public void setReceiver(String receiver) {
+        this.receiver = receiver;
+    }
+
+    public String getReceiverPhone() {
+        return receiverPhone;
+    }
+
+    public void setReceiverPhone(String receiverPhone) {
+        this.receiverPhone = receiverPhone;
+    }
+
+    public String getReceiverAddress() {
+        return receiverAddress;
+    }
+
+    public void setReceiverAddress(String receiverAddress) {
+        this.receiverAddress = receiverAddress;
     }
 
     @Override
@@ -187,7 +208,9 @@ public class MallOrder extends BaseEntity
             .append("orderStatus", getOrderStatus())
             .append("sortNo", getSortNo())
             .append("userId", getUserId())
-            .append("addressId", getAddressId())
+            .append("receiver", getReceiver())
+            .append("receiverPhone", getReceiverPhone())
+            .append("receiverAddress", getReceiverAddress())
             .append("createBy", getCreateBy())
             .append("createTime", getCreateTime())
             .append("updateBy", getUpdateBy())
