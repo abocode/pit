@@ -3,6 +3,7 @@ package cn.source.system.service.impl;
 import cn.source.common.annotation.DataScope;
 import cn.source.common.utils.DateUtils;
 import cn.source.common.utils.SecurityUtils;
+import cn.source.common.utils.StringUtils;
 import cn.source.system.domain.MallAddress;
 import cn.source.system.mapper.MallAddressMapper;
 import cn.source.system.service.IMallAddressService;
@@ -48,6 +49,12 @@ public class MallAddressServiceImpl implements IMallAddressService
         return mallAddressMapper.selectMallAddressList(mallAddress);
     }
 
+    @Override
+    public List<MallAddress> selectApiMallAddressList(MallAddress mallAddress)
+    {
+        return mallAddressMapper.selectApiMallAddressList(mallAddress);
+    }
+
     /**
      * 新增收货地址
      *
@@ -57,9 +64,22 @@ public class MallAddressServiceImpl implements IMallAddressService
     @Override
     public int insertMallAddress(MallAddress mallAddress)
     {
-        mallAddress.setUserId(SecurityUtils.getUserId());
+        if(StringUtils.isNull(mallAddress.getUserId())){
+            mallAddress.setUserId(SecurityUtils.getUserId());
+        }
+        // true与1转换一下
+        if(mallAddress.getIsDefault().equals("true")){
+            mallAddress.setIsDefault("1");
+        }else{
+            mallAddress.setIsDefault("0");
+        }
         mallAddress.setCreateTime(DateUtils.getNowDate());
-        return mallAddressMapper.insertMallAddress(mallAddress);
+        int result = mallAddressMapper.insertMallAddress(mallAddress);
+        // 如果当前新增记录是默认地址，将其他默认取消
+        if(mallAddress.getIsDefault().equals("1")){
+            result = mallAddressMapper.updateAddressDefault(mallAddress);
+        }
+        return result;
     }
 
     /**
@@ -71,9 +91,19 @@ public class MallAddressServiceImpl implements IMallAddressService
     @Override
     public int updateMallAddress(MallAddress mallAddress)
     {
+        // true与1转换一下
+        if(mallAddress.getIsDefault().equals("true")){
+            mallAddress.setIsDefault("1");
+        }else{
+            mallAddress.setIsDefault("0");
+        }
         mallAddress.setUpdateTime(DateUtils.getNowDate());
-        mallAddress.setUpdateBy(SecurityUtils.getUsername());
-        return mallAddressMapper.updateMallAddress(mallAddress);
+        int result = mallAddressMapper.updateMallAddress(mallAddress);
+        // 如果当前新增记录是默认地址，将其他默认取消
+        if(mallAddress.getIsDefault().equals("1")){
+            result = mallAddressMapper.updateAddressDefault(mallAddress);
+        }
+        return result;
     }
 
     /**

@@ -5,6 +5,7 @@ import cn.source.common.core.controller.BaseController;
 import cn.source.common.core.domain.AjaxResult;
 import cn.source.common.core.page.TableDataInfo;
 import cn.source.common.enums.BusinessType;
+import cn.source.common.utils.SecurityUtils;
 import cn.source.common.utils.poi.ExcelUtil;
 import cn.source.system.domain.MallAddress;
 import cn.source.system.service.IMallAddressService;
@@ -82,6 +83,7 @@ public class MallAddressController extends BaseController
     @PutMapping
     public AjaxResult edit(@RequestBody MallAddress mallAddress)
     {
+        mallAddress.setUpdateBy(SecurityUtils.getUsername());
         return toAjax(mallAddressService.updateMallAddress(mallAddress));
     }
 

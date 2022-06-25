@@ -34,6 +34,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </where>
     </select>
 
+    <select id="selectApiMallAddressList" parameterType="MallAddress" resultMap="MallAddressResult">
+        <include refid="selectMallAddressVo"/>
+        <where>
+            <if test="userId != null  and userId != ''"> and user_Id = #{userId}</if>
+        </where>
+    </select>
+
     <select id="selectMallAddressById" parameterType="Long" resultMap="MallAddressResult">
         <include refid="selectMallAddressVo"/>
         where id = #{id}
@@ -88,6 +95,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="remark != null">remark = #{remark},</if>
         </trim>
         where id = #{id}
+    </update>
+
+    <update id="updateAddressDefault" parameterType="MallAddress">
+        update mall_address
+        set is_default = 0
+        where user_id = #{userId} and id != #{id}
     </update>
 
     <delete id="deleteMallAddressById" parameterType="Long">

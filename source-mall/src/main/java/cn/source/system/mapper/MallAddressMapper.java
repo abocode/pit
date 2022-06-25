@@ -29,6 +29,14 @@ public interface MallAddressMapper
     public List<MallAddress> selectMallAddressList(MallAddress mallAddress);
 
     /**
+     * api查询收货地址列表,不同于pc的aop,使用用户id查询
+     *
+     * @param mallAddress 收货地址
+     * @return 收货地址集合
+     */
+    public List<MallAddress> selectApiMallAddressList(MallAddress mallAddress);
+
+    /**
      * 新增收货地址
      *
      * @param mallAddress 收货地址
@@ -43,6 +51,14 @@ public interface MallAddressMapper
      * @return 结果
      */
     public int updateMallAddress(MallAddress mallAddress);
+
+    /**
+     * 取消其他收货的默认状态
+     *
+     * @param mallAddress 收货地址
+     * @return 结果
+     */
+    public int updateAddressDefault(MallAddress mallAddress);
 
     /**
      * 删除收货地址

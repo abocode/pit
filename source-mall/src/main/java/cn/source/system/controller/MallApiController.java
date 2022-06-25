@@ -1,19 +1,15 @@
 package cn.source.system.controller;
 
+import cn.source.common.annotation.Log;
 import cn.source.common.constant.HttpStatus;
 import cn.source.common.core.controller.BaseController;
 import cn.source.common.core.domain.AjaxResult;
 import cn.source.common.core.page.TableDataInfo;
+import cn.source.common.enums.BusinessType;
 import cn.source.system.domain.*;
-import cn.source.system.service.IMallAdvertService;
-import cn.source.system.service.IMallClassifyService;
-import cn.source.system.service.IMallGoodsService;
-import cn.source.system.service.IMallNavigateService;
+import cn.source.system.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,6 +29,8 @@ public class MallApiController extends BaseController {
     private IMallNavigateService mallNavigateService;
     @Autowired
     private IMallAdvertService mallAdvertService;
+    @Autowired
+    private IMallAddressService mallAddressService;
 
 
     /**
@@ -96,6 +94,50 @@ public class MallApiController extends BaseController {
         String msg = "商品查找成功";
         MallGoods mallGoods = mallGoodsService.selectMallGoodsById(id);
         AjaxResult ajaxResult = new AjaxResult(HttpStatus.SUCCESS,msg,mallGoods);
+        return ajaxResult;
+    }
+
+    /**
+     * @Description: 获取地址列表
+     */
+    @GetMapping("/findAddressList")
+    public TableDataInfo findAddressList(MallAddress mallAddress)
+    {
+        startPage();
+        List<MallAddress> list = mallAddressService.selectApiMallAddressList(mallAddress);
+        return getDataTable(list);
+    }
+
+    @Log(title = "收货地址", businessType = BusinessType.INSERT)
+    @PostMapping("/insertAddress")
+    public AjaxResult insertAddress(@RequestBody MallAddress mallAddress)
+    {
+        return toAjax(mallAddressService.insertMallAddress(mallAddress));
+    }
+
+    @Log(title = "收货地址", businessType = BusinessType.UPDATE)
+    @PostMapping("/updateAddress")
+    public AjaxResult updateAddress(@RequestBody MallAddress mallAddress)
+    {
+        return toAjax(mallAddressService.updateMallAddress(mallAddress));
+    }
+
+    @Log(title = "收货地址", businessType = BusinessType.DELETE)
+    @DeleteMapping("deleteAddress/{id}")
+    public AjaxResult deleteAddress(@PathVariable Long id)
+    {
+        return toAjax(mallAddressService.deleteMallAddressById(id));
+    }
+
+    /**
+     * @Description: 获取收货地址by id
+     */
+    @GetMapping("/findAddressById")
+    public AjaxResult findAddressById(@RequestParam Long id)
+    {
+        String msg = "收货地址查找成功";
+        MallAddress mallAddress = mallAddressService.selectMallAddressById(id);
+        AjaxResult ajaxResult = new AjaxResult(HttpStatus.SUCCESS,msg,mallAddress);
         return ajaxResult;
     }
 }
