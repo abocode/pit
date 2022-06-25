@@ -1,11 +1,9 @@
 package cn.source.system.controller;
 
-import cn.source.common.annotation.Log;
 import cn.source.common.constant.HttpStatus;
 import cn.source.common.core.controller.BaseController;
 import cn.source.common.core.domain.AjaxResult;
 import cn.source.common.core.page.TableDataInfo;
-import cn.source.common.enums.BusinessType;
 import cn.source.system.domain.*;
 import cn.source.system.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -108,21 +106,18 @@ public class MallApiController extends BaseController {
         return getDataTable(list);
     }
 
-    @Log(title = "收货地址", businessType = BusinessType.INSERT)
     @PostMapping("/insertAddress")
     public AjaxResult insertAddress(@RequestBody MallAddress mallAddress)
     {
         return toAjax(mallAddressService.insertMallAddress(mallAddress));
     }
 
-    @Log(title = "收货地址", businessType = BusinessType.UPDATE)
     @PostMapping("/updateAddress")
     public AjaxResult updateAddress(@RequestBody MallAddress mallAddress)
     {
         return toAjax(mallAddressService.updateMallAddress(mallAddress));
     }
 
-    @Log(title = "收货地址", businessType = BusinessType.DELETE)
     @DeleteMapping("deleteAddress/{id}")
     public AjaxResult deleteAddress(@PathVariable Long id)
     {

@@ -98,12 +98,11 @@ public class MallAddressServiceImpl implements IMallAddressService
             mallAddress.setIsDefault("0");
         }
         mallAddress.setUpdateTime(DateUtils.getNowDate());
-        int result = mallAddressMapper.updateMallAddress(mallAddress);
         // 如果当前新增记录是默认地址，将其他默认取消
         if(mallAddress.getIsDefault().equals("1")){
-            result = mallAddressMapper.updateAddressDefault(mallAddress);
+            mallAddressMapper.updateAddressDefault(mallAddress);
         }
-        return result;
+        return mallAddressMapper.updateMallAddress(mallAddress);
     }
 
     /**
