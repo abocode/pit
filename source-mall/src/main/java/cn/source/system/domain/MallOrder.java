@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -32,7 +33,7 @@ public class MallOrder extends BaseEntity
 
     /** 支付金额 */
     @Excel(name = "支付金额")
-    private Long payAmount;
+    private BigDecimal payAmount;
 
     /** 支付方式 */
     @Excel(name = "支付方式",dictType = "mall_pay_method")
@@ -97,12 +98,12 @@ public class MallOrder extends BaseEntity
     {
         return orderCreateTime;
     }
-    public void setPayAmount(Long payAmount)
+    public void setPayAmount(BigDecimal payAmount)
     {
         this.payAmount = payAmount;
     }
 
-    public Long getPayAmount()
+    public BigDecimal getPayAmount()
     {
         return payAmount;
     }

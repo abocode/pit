@@ -3,6 +3,7 @@ package cn.source.system.service.impl;
 import cn.source.common.annotation.DataScope;
 import cn.source.common.utils.DateUtils;
 import cn.source.common.utils.SecurityUtils;
+import cn.source.common.utils.StringUtils;
 import cn.source.common.utils.uuid.CodeUtil;
 import cn.source.system.domain.MallOrder;
 import cn.source.system.mapper.MallOrderMapper;
@@ -58,11 +59,14 @@ public class MallOrderServiceImpl implements IMallOrderService
     @Override
     public int insertMallOrder(MallOrder mallOrder)
     {
-        mallOrder.setUserId(SecurityUtils.getUserId());
+        if(StringUtils.isNull(mallOrder.getUserId())){
+            mallOrder.setUserId(SecurityUtils.getUserId());
+        }
         mallOrder.setOrderCode(CodeUtil.getCode());
         mallOrder.setOrderCreateTime(DateUtils.getNowDate());
         mallOrder.setCreateTime(DateUtils.getNowDate());
         mallOrder.setSortNo(0);
+        // 需要将商品信息保存
         return mallOrderMapper.insertMallOrder(mallOrder);
     }
 

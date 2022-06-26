@@ -29,6 +29,8 @@ public class MallApiController extends BaseController {
     private IMallAdvertService mallAdvertService;
     @Autowired
     private IMallAddressService mallAddressService;
+    @Autowired
+    private IMallOrderService mallOrderService;
 
 
     /**
@@ -106,18 +108,27 @@ public class MallApiController extends BaseController {
         return getDataTable(list);
     }
 
+    /**
+     * @Description: 新增收货地址
+     */
     @PostMapping("/insertAddress")
     public AjaxResult insertAddress(@RequestBody MallAddress mallAddress)
     {
         return toAjax(mallAddressService.insertMallAddress(mallAddress));
     }
 
+    /**
+     * @Description: 修改收货地址
+     */
     @PostMapping("/updateAddress")
     public AjaxResult updateAddress(@RequestBody MallAddress mallAddress)
     {
         return toAjax(mallAddressService.updateMallAddress(mallAddress));
     }
 
+    /**
+     * @Description: 删除收货地址by id
+     */
     @DeleteMapping("deleteAddress/{id}")
     public AjaxResult deleteAddress(@PathVariable Long id)
     {
@@ -134,5 +145,14 @@ public class MallApiController extends BaseController {
         MallAddress mallAddress = mallAddressService.selectMallAddressById(id);
         AjaxResult ajaxResult = new AjaxResult(HttpStatus.SUCCESS,msg,mallAddress);
         return ajaxResult;
+    }
+
+    /**
+     * @Description: 新增订单
+     */
+    @PostMapping("/insertMallOrder")
+    public AjaxResult insertMallOrder(@RequestBody MallOrder mallOrder)
+    {
+        return toAjax(mallOrderService.insertMallOrder(mallOrder));
     }
 }
