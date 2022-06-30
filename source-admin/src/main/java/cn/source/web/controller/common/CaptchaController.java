@@ -129,7 +129,7 @@ public class CaptchaController
             DySmsUtil.sendSms(loginName, obj,accessKeyId,accessKeySecret,accessKeytemplate);
             return true;
         }else{
-            return false;
+            return true;
         }
     }
 }
