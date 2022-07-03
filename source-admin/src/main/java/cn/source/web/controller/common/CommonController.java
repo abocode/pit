@@ -31,9 +31,6 @@ public class CommonController
     @Value("${ruoyi.domain}")
     private  String domain;
 
-    // @Autowired
-    // private ServerConfig serverConfig;
-
     /**
      * 通用下载请求
      *
@@ -80,7 +77,6 @@ public class CommonController
             String filePath = RuoYiConfig.getUploadPath();
             // 上传并返回新文件名称
             String fileName = FileUploadUtils.upload(filePath, file);
-            // String url = serverConfig.getUrl() + fileName;
             String url = domain + fileName;
             AjaxResult ajax = AjaxResult.success();
             ajax.put("fileName", fileName);

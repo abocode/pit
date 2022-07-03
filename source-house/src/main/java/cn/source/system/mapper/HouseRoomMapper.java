@@ -71,12 +71,28 @@ public interface HouseRoomMapper
     public int insertHouseImage(HouseRoom houseRoom);
 
     /**
+     * 删除房源图片
+     *
+     * @param id 房源详情主键
+     * @return 结果
+     */
+    public int deleteHouseImageByHouseId(Long id);
+
+    /**
      * 新增房源特色
      *
      * @param houseRoom 房源详情
      * @return 结果
      */
     public int insertHouseFeature(HouseRoom houseRoom);
+
+    /**
+     * 删除房源亮点
+     *
+     * @param id 房源详情主键
+     * @return 结果
+     */
+    public int deleteHouseFeatureByHouseId(Long id);
 
     /**
      * 查询房源图片详情

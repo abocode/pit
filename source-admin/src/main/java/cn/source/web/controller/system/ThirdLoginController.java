@@ -6,17 +6,21 @@ import cn.source.common.core.domain.AjaxResult;
 import cn.source.common.core.domain.entity.SysUser;
 import cn.source.common.core.domain.model.LoginBody;
 import cn.source.common.core.domain.model.LoginUser;
+import cn.source.common.core.page.TableDataInfo;
 import cn.source.common.core.redis.RedisCache;
 import cn.source.common.utils.SecurityUtils;
 import cn.source.common.utils.StringUtils;
 import cn.source.framework.web.service.SysLoginService;
 import cn.source.framework.web.service.SysPermissionService;
 import cn.source.framework.web.service.TokenService;
+import cn.source.system.domain.SysNotice;
+import cn.source.system.service.ISysNoticeService;
 import cn.source.system.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -42,6 +46,9 @@ public class ThirdLoginController extends BaseController
 
     @Autowired
     private TokenService tokenService;
+
+    @Autowired
+    private ISysNoticeService noticeService;
 
     /**
      * 三方登录方法
@@ -108,7 +115,7 @@ public class ThirdLoginController extends BaseController
      *
      * @return 用户信息
      */
-    @GetMapping("getInfo")
+    @GetMapping("/getInfo")
     public AjaxResult getInfo()
     {
         SysUser user = SecurityUtils.getLoginUser().getUser();
@@ -121,6 +128,27 @@ public class ThirdLoginController extends BaseController
         ajax.put("roles", roles);
         ajax.put("permissions", permissions);
         return ajax;
+    }
+
+
+    /**
+     * @Description: 获取通知列表
+     */
+    @GetMapping("/notice/findNoticeList")
+    public TableDataInfo findNoticeList(SysNotice notice)
+    {
+        startPage();
+        List<SysNotice> list = noticeService.selectNoticeList(notice);
+        return getDataTable(list);
+    }
+
+    /**
+     * 获取文章详细信息
+     */
+    @GetMapping(value = "/notice/getNotice/{id}")
+    public AjaxResult getNotice(@PathVariable("id") Long id)
+    {
+        return AjaxResult.success(noticeService.selectNoticeById(id));
     }
 
 }

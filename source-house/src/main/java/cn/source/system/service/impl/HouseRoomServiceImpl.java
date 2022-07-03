@@ -1,17 +1,20 @@
 package cn.source.system.service.impl;
 
 import cn.source.common.utils.DateUtils;
+import cn.source.common.utils.SecurityUtils;
 import cn.source.common.utils.StringUtils;
 import cn.source.common.utils.uuid.CodeUtil;
 import cn.source.system.domain.HouseFeature;
 import cn.source.system.domain.HouseImage;
 import cn.source.system.domain.HouseRoom;
 import cn.source.system.domain.HouseVillage;
+import cn.source.system.enums.HouseStatus;
 import cn.source.system.mapper.HouseRoomMapper;
 import cn.source.system.service.IHouseRoomService;
 import cn.source.system.service.IHouseVillageService;
 import cn.source.system.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -27,6 +30,8 @@ import java.util.List;
 public class HouseRoomServiceImpl implements IHouseRoomService
 {
 
+    @Value("${ruoyi.domain}")
+    private  String domain;
 
     @Autowired
     private ISysUserService userService;
@@ -46,7 +51,10 @@ public class HouseRoomServiceImpl implements IHouseRoomService
     @Override
     public HouseRoom selectHouseRoomById(Long id)
     {
-        return houseRoomMapper.selectHouseRoomById(id);
+        HouseRoom houseRoom = houseRoomMapper.selectHouseRoomById(id);
+        houseRoom.setFeatureList(houseRoomMapper.selectHouseFeature(houseRoom));
+        houseRoom.setImageList(houseRoomMapper.selectHouseImage(houseRoom));
+        return houseRoom;
     }
 
     /**
@@ -70,8 +78,7 @@ public class HouseRoomServiceImpl implements IHouseRoomService
     @Override
     public int insertHouseRoom(HouseRoom houseRoom)
     {
-        houseRoom.setCreateTime(DateUtils.getNowDate());
-        return houseRoomMapper.insertHouseRoom(houseRoom);
+        return insertRoom(houseRoom);
     }
 
     /**
@@ -84,6 +91,17 @@ public class HouseRoomServiceImpl implements IHouseRoomService
     public int updateHouseRoom(HouseRoom houseRoom)
     {
         houseRoom.setUpdateTime(DateUtils.getNowDate());
+        if(StringUtils.isNotNull(houseRoom.getFeatureList()) && houseRoom.getFeatureList().size()>0){
+            // 先删除，再插入
+            houseRoomMapper.deleteHouseFeatureByHouseId(houseRoom.getId());
+            houseRoomMapper.insertHouseFeature(houseRoom);
+        }
+        if(StringUtils.isNotNull(houseRoom.getImageList()) && houseRoom.getImageList().size()>0){
+            // 先删除，再插入
+            houseRoomMapper.deleteHouseImageByHouseId(houseRoom.getId());
+            houseRoom.setFaceUrl(houseRoom.getImageList().get(0).getImgUrl());
+            houseRoomMapper.insertHouseImage(houseRoom);
+        }
         return houseRoomMapper.updateHouseRoom(houseRoom);
     }
 
@@ -96,6 +114,10 @@ public class HouseRoomServiceImpl implements IHouseRoomService
     @Override
     public int deleteHouseRoomByIds(Long[] ids)
     {
+        for (Long id : ids) {
+            houseRoomMapper.deleteHouseFeatureByHouseId(id);
+            houseRoomMapper.deleteHouseImageByHouseId(id);
+        }
         return houseRoomMapper.deleteHouseRoomByIds(ids);
     }
 
@@ -108,6 +130,8 @@ public class HouseRoomServiceImpl implements IHouseRoomService
     @Override
     public int deleteHouseRoomById(Long id)
     {
+        houseRoomMapper.deleteHouseFeatureByHouseId(id);
+        houseRoomMapper.deleteHouseImageByHouseId(id);
         return houseRoomMapper.deleteHouseRoomById(id);
     }
 
@@ -120,26 +144,7 @@ public class HouseRoomServiceImpl implements IHouseRoomService
     @Override
     public int apiInsertHouseRoom(HouseRoom houseRoom)
     {
-        houseRoom.setCreateTime(DateUtils.getNowDate());
-        if(StringUtils.isEmpty(houseRoom.getVillageName())){
-            HouseVillage houseVillage = houseVillageService.selectHouseVillageById(houseRoom.getVillageId());
-            houseRoom.setVillageName(houseVillage.getName());
-        }
-        if(StringUtils.isNull(houseRoom.getVillageId())){
-            HouseVillage houseVillage = new HouseVillage();
-            houseVillage.setName(houseRoom.getVillageName());
-            houseVillage = houseVillageService.selectHouseVillage(houseVillage);
-            houseRoom.setVillageId(houseVillage.getId());
-        }
-        if(StringUtils.isNull(houseRoom.getStartDate())){
-            houseRoom.setStartDate(new Date());
-        }
-        houseRoom.setCode(CodeUtil.getCodeByUUId());
-        houseRoom.setFaceUrl(houseRoom.getImageList().get(0).getImgUrl());
-        houseRoomMapper.insertHouseRoom(houseRoom);
-        houseRoomMapper.insertHouseFeature(houseRoom);
-        houseRoomMapper.insertHouseImage(houseRoom);
-        return houseRoomMapper.updateHouseRoom(houseRoom);
+        return insertRoom(houseRoom);
     }
 
     /**
@@ -157,5 +162,44 @@ public class HouseRoomServiceImpl implements IHouseRoomService
         houseRoom.setUser(userService.selectUserById(houseRoom.getPublishId()));
         houseRoom.setVillage(houseVillageService.selectHouseVillageById(houseRoom.getVillageId()));
         return houseRoom;
+    }
+
+
+    /**
+    * @Description: 将保存房源的方法统一到此方法中
+    * @author: 詹Sir
+    */
+    public int insertRoom(HouseRoom houseRoom){
+        // 待审核
+        houseRoom.setState(HouseStatus.AUDIT.getCode());
+        houseRoom.setCreateTime(DateUtils.getNowDate());
+        if(StringUtils.isNull(houseRoom.getPublishId())){
+            houseRoom.setPublishId(SecurityUtils.getUserId());
+        }
+        if(StringUtils.isNull(houseRoom.getStartDate())){
+            houseRoom.setStartDate(new Date());
+        }
+        if(StringUtils.isEmpty(houseRoom.getVillageName())){
+            HouseVillage houseVillage = houseVillageService.selectHouseVillageById(houseRoom.getVillageId());
+            houseRoom.setVillageName(houseVillage.getName());
+        }
+        if(StringUtils.isNull(houseRoom.getVillageId())){
+            HouseVillage houseVillage = new HouseVillage();
+            houseVillage.setName(houseRoom.getVillageName());
+            houseVillage = houseVillageService.selectHouseVillage(houseVillage);
+            houseRoom.setVillageId(houseVillage.getId());
+        }
+        houseRoom.setCode(CodeUtil.getCodeByUUId());
+        // 封面图设置默认值
+        houseRoom.setFaceUrl("https://sourcebyte.cn/profile/customer/file/loading.png");
+        houseRoomMapper.insertHouseRoom(houseRoom);
+        if(StringUtils.isNotNull(houseRoom.getFeatureList()) && houseRoom.getFeatureList().size()>0){
+            houseRoomMapper.insertHouseFeature(houseRoom);
+        }
+        if(StringUtils.isNotNull(houseRoom.getImageList()) && houseRoom.getImageList().size()>0){
+            houseRoom.setFaceUrl(houseRoom.getImageList().get(0).getImgUrl());
+            houseRoomMapper.insertHouseImage(houseRoom);
+        }
+        return houseRoomMapper.updateHouseRoom(houseRoom);
     }
 }

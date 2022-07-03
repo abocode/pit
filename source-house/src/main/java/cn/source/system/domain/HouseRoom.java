@@ -89,7 +89,6 @@ public class HouseRoom extends BaseEntity
     private String owerPhone;
 
     /** 小区id */
-    @Excel(name = "小区id")
     private Long villageId;
 
     /** 小区名称 */
@@ -109,10 +108,9 @@ public class HouseRoom extends BaseEntity
     private String payType;
 
     /** 发布人id */
-    @Excel(name = "发布人id")
     private Long publishId;
 
-    /** 0：待出租，1：已出租,2:下架 */
+    /** 0：待审核，1：待出租,2:已出租,3:已下架 */
     private Integer state;
 
     private String createName;

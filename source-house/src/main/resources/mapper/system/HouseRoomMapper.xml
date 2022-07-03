@@ -238,4 +238,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             and house_id = #{id}
         </where>
     </select>
+
+    <delete id="deleteHouseImageByHouseId" parameterType="Long">
+        delete from house_image where house_id = #{id}
+    </delete>
+
+    <delete id="deleteHouseFeatureByHouseId" parameterType="Long">
+        delete from house_feature where house_id = #{id}
+    </delete>
 </mapper>
