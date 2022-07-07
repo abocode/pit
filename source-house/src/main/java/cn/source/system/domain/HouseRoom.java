@@ -80,14 +80,6 @@ public class HouseRoom extends BaseEntity
     @Excel(name = "房源描述")
     private String introduce;
 
-    /** 房东姓名 */
-    @Excel(name = "房东姓名")
-    private String ownerName;
-
-    /** 房东电话 */
-    @Excel(name = "房东电话")
-    private String owerPhone;
-
     /** 小区id */
     private Long villageId;
 
@@ -104,7 +96,7 @@ public class HouseRoom extends BaseEntity
     private String houseNo;
 
     /** 付款方式 */
-    @Excel(name = "付款方式")
+    // @Excel(name = "付款方式")
     private String payType;
 
     /** 发布人id */
@@ -112,6 +104,21 @@ public class HouseRoom extends BaseEntity
 
     /** 0：待审核，1：待出租,2:已出租,3:已下架 */
     private Integer state;
+
+    @Excel(name = "装修")
+    private String decoration;
+
+    @Excel(name = "经纪人")
+    private String agentName;
+
+    @Excel(name = "经纪人电话")
+    private String agentPhone;
+
+    @Excel(name = "房东姓名")
+    private String ownerName;
+
+    @Excel(name = "房东电话")
+    private String owerPhone;
 
     private String createName;
 
@@ -423,6 +430,30 @@ public class HouseRoom extends BaseEntity
         this.houseCode = houseCode;
     }
 
+    public String getDecoration() {
+        return decoration;
+    }
+
+    public void setDecoration(String decoration) {
+        this.decoration = decoration;
+    }
+
+    public String getAgentName() {
+        return agentName;
+    }
+
+    public void setAgentName(String agentName) {
+        this.agentName = agentName;
+    }
+
+    public String getAgentPhone() {
+        return agentPhone;
+    }
+
+    public void setAgentPhone(String agentPhone) {
+        this.agentPhone = agentPhone;
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
@@ -457,6 +488,9 @@ public class HouseRoom extends BaseEntity
             .append("houseHall", getHouseHall())
             .append("code", getCode())
             .append("faceUrl", getFaceUrl())
+            .append("decoration", getDecoration())
+            .append("agentName", getAgentName())
+            .append("agentPhone", getAgentPhone())
             .toString();
     }
 }

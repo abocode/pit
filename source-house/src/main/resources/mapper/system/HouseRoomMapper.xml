@@ -36,6 +36,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="houseHall"    column="house_Hall"    />
         <result property="code"    column="code"    />
         <result property="faceUrl"    column="face_Url"    />
+        <result property="decoration"    column="decoration"    />
+        <result property="agentName"    column="agent_Name"    />
+        <result property="agentPhone"    column="agent_Phone"    />
     </resultMap>
 
     <resultMap type="HouseImage" id="HouseImageResult">
@@ -52,7 +55,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectHouseRoomVo">
-        select id, type, house_Hall,house_num,concat(house_Hall,house_num,toilet_num) as houseCode,toilet_num, house_area, room_type, room_code, room_area, direction, price, floor, step_type, start_date, introduce, owner_name, ower_phone, village_id, village_name, address, house_no, pay_type, publish_id, state, create_time, create_name, update_time, update_name, remark, code, face_Url from house_room
+        select id, type, house_Hall,house_num,concat(house_Hall,house_num,toilet_num) as houseCode,toilet_num, house_area, room_type, room_code, room_area, direction, price, floor, step_type, start_date, introduce, owner_name, ower_phone, village_id, village_name, address, house_no, pay_type, publish_id, state, create_time, create_name, update_time, update_name, remark, code, face_Url,
+         decoration,agent_Name,agent_Phone from house_room
     </sql>
 
     <select id="selectHouseRoomList" parameterType="HouseRoom" resultMap="HouseRoomResult">
@@ -85,6 +89,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="houseHall != null  and houseHall != ''"> and house_Hall = #{houseHall}</if>
             <if test="code != null  and code != ''"> and code = #{code}</if>
             <if test="faceUrl != null  and faceUrl != ''"> and face_Url = #{faceUrl}</if>
+            <if test="decoration != null  and decoration != ''"> and decoration = #{decoration}</if>
+            <if test="agentName != null  and agentName != ''"> and agent_Name = #{agentName}</if>
+            <if test="agentPhone != null  and agentPhone != ''"> and agent_Phone = #{agentPhone}</if>
         </where>
     </select>
 
@@ -126,6 +133,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="houseHall != null">house_Hall,</if>
             <if test="code != null">code,</if>
             <if test="faceUrl != null">face_Url,</if>
+            <if test="decoration != null">decoration,</if>
+            <if test="agentName != null">agent_Name,</if>
+            <if test="agentPhone != null">agent_Phone,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="type != null">#{type},</if>
@@ -158,6 +168,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="houseHall != null">#{houseHall},</if>
             <if test="code != null">#{code},</if>
             <if test="faceUrl != null">#{faceUrl},</if>
+            <if test="decoration != null">#{decoration},</if>
+            <if test="agentName != null">#{agentName},</if>
+            <if test="agentPhone != null">#{agentPhone},</if>
          </trim>
     </insert>
 
@@ -194,6 +207,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="houseHall != null">house_Hall = #{houseHall},</if>
             <if test="code != null">code = #{code},</if>
             <if test="faceUrl != null">face_Url = #{faceUrl},</if>
+            <if test="decoration != null">decoration = #{decoration},</if>
+            <if test="agentName != null">agent_Name = #{agentName},</if>
+            <if test="agentPhone != null">agent_Phone = #{agentPhone},</if>
         </trim>
         where id = #{id}
     </update>
