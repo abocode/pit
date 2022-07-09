@@ -114,6 +114,9 @@ public class HouseRoom extends BaseEntity
     @Excel(name = "经纪人电话")
     private String agentPhone;
 
+    /** 经纪人id */
+    private Long agentUserId;
+
     @Excel(name = "房东姓名")
     private String ownerName;
 
@@ -454,6 +457,14 @@ public class HouseRoom extends BaseEntity
         this.agentPhone = agentPhone;
     }
 
+    public Long getAgentUserId() {
+        return agentUserId;
+    }
+
+    public void setAgentUserId(Long agentUserId) {
+        this.agentUserId = agentUserId;
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
@@ -491,6 +502,7 @@ public class HouseRoom extends BaseEntity
             .append("decoration", getDecoration())
             .append("agentName", getAgentName())
             .append("agentPhone", getAgentPhone())
+            .append("agentUserId", getAgentUserId())
             .toString();
     }
 }

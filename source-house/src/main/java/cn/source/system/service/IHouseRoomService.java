@@ -45,12 +45,24 @@ public interface IHouseRoomService
     public int updateHouseRoom(HouseRoom houseRoom);
 
     /**
+     * 设置房源经纪人
+     */
+    public int updateHouseAgent(Long[] ids,Long userId);
+
+    /**
      * 批量删除房源详情
      *
      * @param ids 需要删除的房源详情主键集合
      * @return 结果
      */
     public int deleteHouseRoomByIds(Long[] ids);
+
+    /**
+     * 批量修改房源详情
+     *
+     * @param ids 需要删除的房源详情主键集合
+     */
+    public int updateHouseRoomByIds(Long[] ids,Integer state);
 
     /**
      * 删除房源详情信息

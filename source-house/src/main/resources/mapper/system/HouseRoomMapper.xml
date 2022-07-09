@@ -214,6 +214,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where id = #{id}
     </update>
 
+    <update id="updateHouseAgent" parameterType="Map">
+        update house_room set agent_User_Id = #{agentUserId},
+        agent_Name = #{agentName},agent_Phone = #{agentPhone}
+        where id in
+        <foreach item="id" collection="ids" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+    <update id="updateHouseRoomByIds" parameterType="Map">
+        update house_room set state = #{state}
+        where id in
+        <foreach item="id" collection="ids" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
     <delete id="deleteHouseRoomById" parameterType="Long">
         delete from house_room where id = #{id}
     </delete>

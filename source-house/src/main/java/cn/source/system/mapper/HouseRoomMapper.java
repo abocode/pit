@@ -5,6 +5,7 @@ import cn.source.system.domain.HouseImage;
 import cn.source.system.domain.HouseRoom;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 房源详情Mapper接口
@@ -45,6 +46,20 @@ public interface HouseRoomMapper
      * @return 结果
      */
     public int updateHouseRoom(HouseRoom houseRoom);
+
+    /**
+     * 设置房源经纪人
+     */
+    public int updateHouseAgent(Map<String,Object> houseMap);
+
+
+    /**
+     * 修改房源详情
+     *
+     * @param houseMap 房源详情
+     * @return 结果
+     */
+    public int updateHouseRoomByIds(Map<String,Object> houseMap);
 
     /**
      * 删除房源详情

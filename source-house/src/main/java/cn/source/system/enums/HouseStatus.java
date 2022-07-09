@@ -7,7 +7,7 @@ package cn.source.system.enums;
  */
 public enum HouseStatus
     {
-        AUDIT(0, "待审核") , SALEING(1, "待出租"), SALEED(2, "已出租"), CLOSE(3, "已出租");
+        AUDIT(0, "待审核") , SALEING(1, "待出租"), SALEED(2, "已出租"), CLOSE(3, "已下架");
         private final Integer code;
         private final String info;
 

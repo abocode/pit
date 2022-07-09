@@ -1,5 +1,6 @@
 package cn.source.system.service.impl;
 
+import cn.source.common.core.domain.entity.SysUser;
 import cn.source.common.utils.DateUtils;
 import cn.source.common.utils.SecurityUtils;
 import cn.source.common.utils.StringUtils;
@@ -18,7 +19,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 房源详情Service业务层处理
@@ -103,6 +106,37 @@ public class HouseRoomServiceImpl implements IHouseRoomService
             houseRoomMapper.insertHouseImage(houseRoom);
         }
         return houseRoomMapper.updateHouseRoom(houseRoom);
+    }
+
+    /**
+     * 设置房源经纪人
+     *
+     */
+    @Override
+    public int updateHouseAgent(Long[] ids,Long userId)
+    {
+        Map<String,Object> houseMap=new HashMap<String,Object>();
+        houseMap.put("ids",ids);
+        SysUser sysUser = userService.selectUserById(userId);
+        houseMap.put("agentUserId",userId);
+        houseMap.put("agentName",sysUser.getNickName());
+        houseMap.put("agentPhone",sysUser.getPhonenumber());
+        return houseRoomMapper.updateHouseAgent(houseMap);
+    }
+
+    /**
+     * 修改房源详情
+     *
+     * @param houseRoom 房源详情
+     * @return 结果
+     */
+    @Override
+    public int updateHouseRoomByIds(Long[] ids,Integer state)
+    {
+        Map<String,Object> houseMap=new HashMap<String,Object>();
+        houseMap.put("ids",ids);
+        houseMap.put("state",state);
+        return houseRoomMapper.updateHouseRoomByIds(houseMap);
     }
 
     /**

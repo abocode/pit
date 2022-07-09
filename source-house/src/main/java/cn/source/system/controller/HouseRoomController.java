@@ -3,11 +3,14 @@ package cn.source.system.controller;
 import cn.source.common.annotation.Log;
 import cn.source.common.core.controller.BaseController;
 import cn.source.common.core.domain.AjaxResult;
+import cn.source.common.core.domain.entity.SysUser;
 import cn.source.common.core.page.TableDataInfo;
 import cn.source.common.enums.BusinessType;
 import cn.source.common.utils.poi.ExcelUtil;
 import cn.source.system.domain.HouseRoom;
+import cn.source.system.enums.HouseStatus;
 import cn.source.system.service.IHouseRoomService;
+import cn.source.system.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +30,8 @@ public class HouseRoomController extends BaseController
 {
     @Autowired
     private IHouseRoomService houseRoomService;
+    @Autowired
+    private ISysUserService userService;
 
     /**
      * 查询房源详情列表
@@ -94,5 +99,59 @@ public class HouseRoomController extends BaseController
     public AjaxResult remove(@PathVariable Long[] ids)
     {
         return toAjax(houseRoomService.deleteHouseRoomByIds(ids));
+    }
+
+    /**
+     * 审核
+     */
+    @PreAuthorize("@ss.hasPermi('system:houseRoom:more')")
+    @Log(title = "房源详情", businessType = BusinessType.UPDATE)
+    @PutMapping("handleAudit/{ids}")
+    public AjaxResult handleAudit(@PathVariable Long[] ids)
+    {
+        return toAjax(houseRoomService.updateHouseRoomByIds(ids, HouseStatus.SALEING.getCode()));
+    }
+
+    /**
+     * 出租
+     */
+    @PreAuthorize("@ss.hasPermi('system:houseRoom:more')")
+    @Log(title = "房源详情", businessType = BusinessType.UPDATE)
+    @PutMapping("handlePush/{ids}")
+    public AjaxResult handlePush(@PathVariable Long[] ids)
+    {
+        return toAjax(houseRoomService.updateHouseRoomByIds(ids,HouseStatus.SALEED.getCode()));
+    }
+
+    /**
+     * 下架
+     */
+    @PreAuthorize("@ss.hasPermi('system:houseRoom:more')")
+    @Log(title = "房源详情", businessType = BusinessType.UPDATE)
+    @PutMapping("handleClose/{ids}")
+    public AjaxResult handleClose(@PathVariable Long[] ids)
+    {
+        return toAjax(houseRoomService.updateHouseRoomByIds(ids,HouseStatus.CLOSE.getCode()));
+    }
+
+    /**
+     * 查询用户列表
+     */
+    @GetMapping("/userList")
+    public TableDataInfo userList(SysUser user)
+    {
+        startPage();
+        List<SysUser> list = userService.selectUserList(user);
+        return getDataTable(list);
+    }
+
+    /**
+     * 批量选择用户授权
+     */
+    @Log(title = "房源详情", businessType = BusinessType.GRANT)
+    @PutMapping("/authUser/{ids}")
+    public AjaxResult authUser(@PathVariable Long[] ids,Long userId)
+    {
+        return toAjax(houseRoomService.updateHouseAgent(ids,userId));
     }
 }
