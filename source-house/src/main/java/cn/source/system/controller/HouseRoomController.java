@@ -11,9 +11,11 @@ import cn.source.system.domain.HouseRoom;
 import cn.source.system.enums.HouseStatus;
 import cn.source.system.service.IHouseRoomService;
 import cn.source.system.service.ISysUserService;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
@@ -33,6 +35,7 @@ public class HouseRoomController extends BaseController
     @Autowired
     private ISysUserService userService;
 
+
     /**
      * 查询房源详情列表
      */
@@ -46,16 +49,42 @@ public class HouseRoomController extends BaseController
     }
 
     /**
-     * 导出房源详情列表
+     * 下载房源导入模板
      */
     @PreAuthorize("@ss.hasPermi('system:houseRoom:export')")
     @Log(title = "房源详情", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(HttpServletResponse response, HouseRoom houseRoom)
     {
+        PageHelper.orderBy("create_time desc");
         List<HouseRoom> list = houseRoomService.selectHouseRoomList(houseRoom);
         ExcelUtil<HouseRoom> util = new ExcelUtil<HouseRoom>(HouseRoom.class);
         util.exportExcel(response, list, "房源详情数据");
+    }
+
+    /**
+     * 导出房源详情列表
+     */
+    @PreAuthorize("@ss.hasPermi('system:houseRoom:export')")
+    @Log(title = "房源模板", businessType = BusinessType.EXPORT)
+    @PostMapping("/templete")
+    public void templete(HttpServletResponse response, HouseRoom houseRoom)
+    {
+        ExcelUtil<HouseRoom> util = new ExcelUtil<HouseRoom>(HouseRoom.class);
+        util.exportExcel(response, null, "房源模板");
+    }
+
+    /**
+     * 房源管理
+     */
+    @Log(title = "房源管理", businessType = BusinessType.IMPORT)
+    @PostMapping("/importData")
+    public AjaxResult importData(MultipartFile file, boolean updateSupport) throws Exception
+    {
+        ExcelUtil<HouseRoom> util = new ExcelUtil<HouseRoom>(HouseRoom.class);
+        List<HouseRoom> houseList = util.importExcel(file.getInputStream());
+        String message = houseRoomService.importHouse(houseList,updateSupport);
+        return AjaxResult.success(message);
     }
 
     /**
@@ -105,7 +134,7 @@ public class HouseRoomController extends BaseController
      * 审核
      */
     @PreAuthorize("@ss.hasPermi('system:houseRoom:more')")
-    @Log(title = "房源详情", businessType = BusinessType.UPDATE)
+    @Log(title = "房源审核", businessType = BusinessType.UPDATE)
     @PutMapping("handleAudit/{ids}")
     public AjaxResult handleAudit(@PathVariable Long[] ids)
     {
@@ -116,7 +145,7 @@ public class HouseRoomController extends BaseController
      * 出租
      */
     @PreAuthorize("@ss.hasPermi('system:houseRoom:more')")
-    @Log(title = "房源详情", businessType = BusinessType.UPDATE)
+    @Log(title = "房源出租", businessType = BusinessType.UPDATE)
     @PutMapping("handlePush/{ids}")
     public AjaxResult handlePush(@PathVariable Long[] ids)
     {
@@ -127,7 +156,7 @@ public class HouseRoomController extends BaseController
      * 下架
      */
     @PreAuthorize("@ss.hasPermi('system:houseRoom:more')")
-    @Log(title = "房源详情", businessType = BusinessType.UPDATE)
+    @Log(title = "房源下架", businessType = BusinessType.UPDATE)
     @PutMapping("handleClose/{ids}")
     public AjaxResult handleClose(@PathVariable Long[] ids)
     {
@@ -148,7 +177,7 @@ public class HouseRoomController extends BaseController
     /**
      * 批量选择用户授权
      */
-    @Log(title = "房源详情", businessType = BusinessType.GRANT)
+    @Log(title = "房源授权", businessType = BusinessType.GRANT)
     @PutMapping("/authUser/{ids}")
     public AjaxResult authUser(@PathVariable Long[] ids,Long userId)
     {

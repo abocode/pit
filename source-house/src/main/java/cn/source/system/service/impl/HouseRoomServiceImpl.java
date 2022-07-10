@@ -1,6 +1,7 @@
 package cn.source.system.service.impl;
 
 import cn.source.common.core.domain.entity.SysUser;
+import cn.source.common.exception.ServiceException;
 import cn.source.common.utils.DateUtils;
 import cn.source.common.utils.SecurityUtils;
 import cn.source.common.utils.StringUtils;
@@ -235,5 +236,71 @@ public class HouseRoomServiceImpl implements IHouseRoomService
             houseRoomMapper.insertHouseImage(houseRoom);
         }
         return houseRoomMapper.updateHouseRoom(houseRoom);
+    }
+    /**
+     * 导入房源数据
+     *
+     * @param userList 房源数据列表
+     * @param isUpdateSupport 是否更新支持，如果已存在，则进行更新数据
+     * @param loginUser 用户
+     * @return 结果
+     */
+    @Override
+    public String importHouse(List<HouseRoom> houseList, Boolean isUpdateSupport)
+    {
+        if (StringUtils.isNull(houseList) || houseList.size() == 0)
+        {
+            throw new ServiceException("导入数据不能为空！");
+        }
+        int execlSortNo = 1;
+        int successNum = 0;
+        int failureNum = 0;
+        StringBuilder successMsg = new StringBuilder();
+        StringBuilder failureMsg = new StringBuilder();
+        for (HouseRoom houseRoom : houseList)
+        {
+            execlSortNo++;
+            try{
+                if(StringUtils.isNull(houseRoom.getType())){
+                    failureNum++;
+                    failureMsg.append("<br/>Execl第 "+execlSortNo+" 行类型不能为空,需填写整租/合租");
+                }
+                if(StringUtils.isEmpty(houseRoom.getHouseNum())){
+                    failureNum++;
+                    failureMsg.append("<br/>Execl第 "+execlSortNo+" 行居室不能为空");
+                }
+                if(StringUtils.isEmpty(houseRoom.getHouseHall())){
+                    failureNum++;
+                    failureMsg.append("<br/>Execl第 "+execlSortNo+" 行厅室不能为空");
+                }
+                if(StringUtils.isEmpty(houseRoom.getCode())){
+                    successNum++;
+                    successMsg.append("<br/>Execl第 "+execlSortNo+" 行新增成功");
+                    insertRoom(houseRoom);
+                }else{
+                    HouseRoom house = houseRoomMapper.selectHouseRoomByCode(houseRoom.getCode());
+                    if(StringUtils.isNotNull(house) && isUpdateSupport){
+                        successNum++;
+                        successMsg.append("<br/>Execl第 "+execlSortNo+" 行更新成功");
+                        houseRoom.setId(house.getId());
+                        updateHouseRoom(houseRoom);
+                    }else{
+                        failureNum++;
+                        failureMsg.append("<br/>Execl第 "+execlSortNo+" 行房源已存在，如需覆盖请勾选确认更新");
+                    }
+                }
+            }catch (Exception e){
+                failureNum++;
+                String msg = "<br/>Execl第 "+execlSortNo+" 行导入失败：";
+                failureMsg.append(msg + e.getMessage());
+            }
+        }
+        if (failureNum > 0){
+            failureMsg.insert(0, "很抱歉，导入出现错误！共 " + failureNum + " 条数据格式不正确，错误如下：");
+            throw new ServiceException(failureMsg.toString());
+        }else{
+            successMsg.insert(0, "恭喜您，数据已全部导入成功！共 " + successNum + " 条，数据如下：");
+        }
+        return successMsg.toString();
     }
 }

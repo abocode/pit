@@ -87,4 +87,9 @@ public interface IHouseRoomService
      * @return 房源详情
      */
     public HouseRoom selectDetailHouseRoom(HouseRoom houseRoom);
+
+    /**
+     * 查询房源相关详情信息
+     */
+    public String importHouse(List<HouseRoom> houseList, Boolean isUpdateSupport);
 }

@@ -39,6 +39,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="decoration"    column="decoration"    />
         <result property="agentName"    column="agent_Name"    />
         <result property="agentPhone"    column="agent_Phone"    />
+        <result property="agentUserId"    column="agent_User_Id"    />
     </resultMap>
 
     <resultMap type="HouseImage" id="HouseImageResult">
@@ -56,7 +57,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
     <sql id="selectHouseRoomVo">
         select id, type, house_Hall,house_num,concat(house_Hall,house_num,toilet_num) as houseCode,toilet_num, house_area, room_type, room_code, room_area, direction, price, floor, step_type, start_date, introduce, owner_name, ower_phone, village_id, village_name, address, house_no, pay_type, publish_id, state, create_time, create_name, update_time, update_name, remark, code, face_Url,
-         decoration,agent_Name,agent_Phone from house_room
+         decoration,agent_Name,agent_Phone,agent_User_Id from house_room
     </sql>
 
     <select id="selectHouseRoomList" parameterType="HouseRoom" resultMap="HouseRoomResult">
@@ -98,6 +99,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="selectHouseRoomById" parameterType="Long" resultMap="HouseRoomResult">
         <include refid="selectHouseRoomVo"/>
         where id = #{id}
+    </select>
+
+    <select id="selectHouseRoomByCode" parameterType="String" resultMap="HouseRoomResult">
+        <include refid="selectHouseRoomVo"/>
+        where code = #{code}
     </select>
 
     <insert id="insertHouseRoom" parameterType="HouseRoom" useGeneratedKeys="true" keyProperty="id">
@@ -198,7 +204,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="houseNo != null">house_no = #{houseNo},</if>
             <if test="payType != null">pay_type = #{payType},</if>
             <if test="publishId != null">publish_id = #{publishId},</if>
-            <if test="state != null">state = #{state},</if>
             <if test="createTime != null">create_time = #{createTime},</if>
             <if test="createName != null">create_name = #{createName},</if>
             <if test="updateTime != null">update_time = #{updateTime},</if>

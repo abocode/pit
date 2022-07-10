@@ -24,27 +24,30 @@ public class HouseRoom extends BaseEntity
     private Long id;
 
     /** 0整租/1合租 */
-    @Excel(name = "类型")
+    @Excel(name = "类型",readConverterExp="0=整租,1=合租")
     private Integer type;
-
-    private String houseHall;
 
     /** 居室 */
     @Excel(name = "居室")
     private String houseNum;
 
-    private String houseCode;
+    /** 厅室 */
+    @Excel(name = "厅室")
+    private String houseHall;
 
     /** 卫生间 */
     @Excel(name = "卫生间")
     private String toiletNum;
 
+    // @Excel(name = "户型")
+    private String houseCode;
+
     /** 整套面积 */
     @Excel(name = "整套面积")
     private BigDecimal houseArea;
 
-    /** 1主卧,1次卧 */
-    @Excel(name = "1主卧,1次卧")
+    /** 0主卧,1次卧 */
+    @Excel(name = "出租房间",readConverterExp="0=主卧,1=次卧")
     private Integer roomType;
 
     /** 房间号 */
@@ -59,25 +62,29 @@ public class HouseRoom extends BaseEntity
     @Excel(name = "朝向")
     private String direction;
 
+    @Excel(name = "装修")
+    private String decoration;
+
     /** 租金 */
     @Excel(name = "租金")
     private BigDecimal price;
-
-    /** 楼层 */
-    @Excel(name = "楼层")
-    private String floor;
-
-    /** 楼房类型 */
-    @Excel(name = "楼房类型")
-    private String stepType;
 
     /** 起租日期 */
     @JsonFormat(pattern = "yyyy-MM-dd")
     @Excel(name = "起租日期", width = 30, dateFormat = "yyyy-MM-dd")
     private Date startDate;
 
+    /** 0：待审核，1：待出租,2:已出租,3:已下架 */
+    @Excel(name = "状态",readConverterExp="0=待审核,1=待出租,2=已出租,3=已下架")
+    private Integer state;
+
+    /** 楼层 */
+    private String floor;
+
+    /** 楼房类型 */
+    private String stepType;
+
     /** 房源描述 */
-    @Excel(name = "房源描述")
     private String introduce;
 
     /** 小区id */
@@ -88,12 +95,15 @@ public class HouseRoom extends BaseEntity
     private String villageName;
 
     /** 具体地址 */
-    @Excel(name = "具体地址")
+    // @Excel(name = "具体地址")
     private String address;
 
     /** 房牌号 */
     @Excel(name = "房牌号")
     private String houseNo;
+
+    @Excel(name = "房源代号")
+    private String code;
 
     /** 付款方式 */
     // @Excel(name = "付款方式")
@@ -101,12 +111,6 @@ public class HouseRoom extends BaseEntity
 
     /** 发布人id */
     private Long publishId;
-
-    /** 0：待审核，1：待出租,2:已出租,3:已下架 */
-    private Integer state;
-
-    @Excel(name = "装修")
-    private String decoration;
 
     @Excel(name = "经纪人")
     private String agentName;
@@ -117,7 +121,7 @@ public class HouseRoom extends BaseEntity
     /** 经纪人id */
     private Long agentUserId;
 
-    @Excel(name = "房东姓名")
+    @Excel(name = "房东")
     private String ownerName;
 
     @Excel(name = "房东电话")
@@ -126,8 +130,6 @@ public class HouseRoom extends BaseEntity
     private String createName;
 
     private String updateName;
-
-    private String code;
 
     private String faceUrl;
 

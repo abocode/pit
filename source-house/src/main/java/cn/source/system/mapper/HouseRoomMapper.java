@@ -24,6 +24,14 @@ public interface HouseRoomMapper
     public HouseRoom selectHouseRoomById(Long id);
 
     /**
+     * 查询房源详情
+     *
+     * @param code 代号
+     * @return 房源详情
+     */
+    public HouseRoom selectHouseRoomByCode(String code);
+
+    /**
      * 查询房源详情列表
      *
      * @param houseRoom 房源详情
