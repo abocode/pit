@@ -50,8 +50,8 @@ public class HouseRoom extends BaseEntity
     @Excel(name = "出租房间",readConverterExp="0=主卧,1=次卧")
     private Integer roomType;
 
-    /** 房间号 */
-    @Excel(name = "房间号")
+    /** 门牌号 */
+    @Excel(name = "门牌号")
     private String roomCode;
 
     /** 房屋面积 */
@@ -112,10 +112,10 @@ public class HouseRoom extends BaseEntity
     /** 发布人id */
     private Long publishId;
 
-    @Excel(name = "经纪人")
+    // @Excel(name = "经纪人")
     private String agentName;
 
-    @Excel(name = "经纪人电话")
+    // @Excel(name = "经纪人电话")
     private String agentPhone;
 
     /** 经纪人id */
