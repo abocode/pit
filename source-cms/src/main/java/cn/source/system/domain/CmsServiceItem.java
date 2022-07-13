@@ -26,7 +26,7 @@ public class CmsServiceItem extends BaseEntity
     @Excel(name = "标题")
     private String title;
 
-    /** 内容 */
+    /** 内容,要从数据库修改的话直接update字段就行 */
     @Excel(name = "内容")
     private String content;
 

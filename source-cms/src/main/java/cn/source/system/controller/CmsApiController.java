@@ -1,5 +1,6 @@
 package cn.source.system.controller;
 
+import cn.source.common.constant.HttpStatus;
 import cn.source.common.core.controller.BaseController;
 import cn.source.common.core.domain.AjaxResult;
 import cn.source.common.core.page.TableDataInfo;
@@ -39,7 +40,7 @@ public class CmsApiController extends BaseController {
     private ICmsLinkService cmsLinkService;
 
     /**
-     * 根据类型获取服务内容
+     * 根据类型获取服务内容(返回实体)
      */
     @GetMapping("/getServiceItem")
     public CmsServiceItem getServiceItmeByType(CmsServiceItem cmsServiceItem){
@@ -48,6 +49,18 @@ public class CmsApiController extends BaseController {
             return list.get(0);
         }
         return null;
+    }
+
+    /**
+     * 根据类型获取服务内容(返回ajax)
+     */
+    @GetMapping("/getServiceItemByAjax")
+    public AjaxResult getServiceItemByAjax(CmsServiceItem cmsServiceItem)
+    {
+        String msg = "服务查找成功";
+        List<CmsServiceItem> list = cmsServiceItemService.selectCmsServiceItemList(cmsServiceItem);
+        AjaxResult ajaxResult = new AjaxResult(HttpStatus.SUCCESS,msg,list.get(0));
+        return ajaxResult;
     }
 
     /**
