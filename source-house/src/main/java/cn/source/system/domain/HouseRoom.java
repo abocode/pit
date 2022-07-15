@@ -137,6 +137,9 @@ public class HouseRoom extends BaseEntity
 
     private List<HouseFeature> featureList;
 
+    /** 接收房源亮点查询条件  */
+    private String feature;
+
     private HouseVillage village;
 
     private SysUser user;
@@ -163,6 +166,14 @@ public class HouseRoom extends BaseEntity
 
     public void setFeatureList(List<HouseFeature> featureList) {
         this.featureList = featureList;
+    }
+
+    public String getFeature() {
+        return feature;
+    }
+
+    public void setFeature(String feature) {
+        this.feature = feature;
     }
 
     public List<HouseImage> getImageList() {

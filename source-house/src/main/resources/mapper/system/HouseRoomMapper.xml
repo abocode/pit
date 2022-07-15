@@ -57,11 +57,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
     <sql id="selectHouseRoomVo">
         select id, type, house_Hall,house_num,concat(house_Hall,house_num,toilet_num) as houseCode,toilet_num, house_area, room_type, room_code, room_area, direction, price, floor, step_type, start_date, introduce, owner_name, ower_phone, village_id, village_name, address, house_no, pay_type, publish_id, state, create_time, create_name, update_time, update_name, remark, code, face_Url,
-         decoration,agent_Name,agent_Phone,agent_User_Id from house_room
+        decoration,agent_Name,agent_Phone,agent_User_Id from house_room
     </sql>
 
     <select id="selectHouseRoomList" parameterType="HouseRoom" resultMap="HouseRoomResult">
-        <include refid="selectHouseRoomVo"/>
+        select DISTINCT house.id, type, house_Hall,house_num,concat(house_Hall,house_num,toilet_num) as houseCode,toilet_num, house_area, room_type, room_code, room_area, direction, price, floor, step_type, start_date, introduce, owner_name, ower_phone, village_id, village_name, address, house_no, pay_type, publish_id, state, create_time, create_name, update_time, update_name, remark, code, face_Url,
+        decoration,agent_Name,agent_Phone,agent_User_Id from house_room as house INNER JOIN house_feature feature on house.id=feature.house_id
         <where>
             <if test="type != null "> and type = #{type}</if>
             <if test="houseNum != null  and houseNum != ''"> and house_num = #{houseNum}</if>
@@ -71,7 +72,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="roomCode != null  and roomCode != ''"> and room_code = #{roomCode}</if>
             <if test="roomArea != null "> and room_area = #{roomArea}</if>
             <if test="direction != null  and direction != ''"> and direction = #{direction}</if>
-            <if test="price != null "> and price = #{price}</if>
+            <if test="price != null "> and price &lt;= #{price}</if>
             <if test="floor != null  and floor != ''"> and floor = #{floor}</if>
             <if test="stepType != null  and stepType != ''"> and step_type = #{stepType}</if>
             <if test="startDate != null "> and start_date = #{startDate}</if>
@@ -93,6 +94,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="decoration != null  and decoration != ''"> and decoration = #{decoration}</if>
             <if test="agentName != null  and agentName != ''"> and agent_Name = #{agentName}</if>
             <if test="agentPhone != null  and agentPhone != ''"> and agent_Phone = #{agentPhone}</if>
+            <if test="feature != null  and feature != ''"> and feature = #{feature}</if>
         </where>
     </select>
 
