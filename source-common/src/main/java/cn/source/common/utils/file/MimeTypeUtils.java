@@ -2,7 +2,7 @@ package cn.source.common.utils.file;
 
 /**
  * 媒体类型工具类
- * 
+ *
  * @author ruoyi
  */
 public class MimeTypeUtils
@@ -16,7 +16,7 @@ public class MimeTypeUtils
     public static final String IMAGE_BMP = "image/bmp";
 
     public static final String IMAGE_GIF = "image/gif";
-    
+
     public static final String[] IMAGE_EXTENSION = { "bmp", "gif", "jpg", "jpeg", "png" };
 
     public static final String[] FLASH_EXTENSION = { "swf", "flv" };
@@ -54,6 +54,21 @@ public class MimeTypeUtils
                 return "gif";
             default:
                 return "";
+        }
+    }
+
+    public static boolean ImageCheck(String prefix)
+    {
+        switch (prefix)
+        {
+            case IMAGE_PNG:
+                return true;
+            case IMAGE_JPG:
+                return true;
+            case IMAGE_JPEG:
+                return true;
+            default:
+                return false;
         }
     }
 }

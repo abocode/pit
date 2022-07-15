@@ -1,5 +1,12 @@
 package cn.source.common.utils.file;
 
+import cn.source.common.config.RuoYiConfig;
+import cn.source.common.constant.Constants;
+import cn.source.common.utils.StringUtils;
+import org.apache.poi.util.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
@@ -7,12 +14,6 @@ import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Arrays;
-import org.apache.poi.util.IOUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import cn.source.common.config.RuoYiConfig;
-import cn.source.common.constant.Constants;
-import cn.source.common.utils.StringUtils;
 
 /**
  * 图片处理工具类
@@ -58,7 +59,7 @@ public class ImageUtils
 
     /**
      * 读取文件为字节数据
-     * 
+     *
      * @param key 地址
      * @return 字节数据
      */

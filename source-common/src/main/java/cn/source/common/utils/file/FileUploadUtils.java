@@ -1,9 +1,5 @@
 package cn.source.common.utils.file;
 
-import java.io.File;
-import java.io.IOException;
-import org.apache.commons.io.FilenameUtils;
-import org.springframework.web.multipart.MultipartFile;
 import cn.source.common.config.RuoYiConfig;
 import cn.source.common.constant.Constants;
 import cn.source.common.exception.file.FileNameLengthLimitExceededException;
@@ -12,6 +8,12 @@ import cn.source.common.exception.file.InvalidExtensionException;
 import cn.source.common.utils.DateUtils;
 import cn.source.common.utils.StringUtils;
 import cn.source.common.utils.uuid.IdUtils;
+import net.coobird.thumbnailator.Thumbnails;
+import org.apache.commons.io.FilenameUtils;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
 
 /**
  * 文件上传工具类
@@ -105,13 +107,20 @@ public class FileUploadUtils
         {
             throw new FileNameLengthLimitExceededException(FileUploadUtils.DEFAULT_FILE_NAME_LENGTH);
         }
-
         assertAllowed(file, allowedExtension);
-
         String fileName = extractFilename(file);
-
         File desc = getAbsoluteFile(baseDir, fileName);
-        file.transferTo(desc);
+        // 如果是图片，则压缩
+        if (ImageCheck(file))
+        {
+            // 使用Thumbnailator实现图片压缩
+            Thumbnails.of(file.getInputStream())
+                    .scale(0.5f) // 值在0到1之间,1f就是原图大小,0.5就是原图的一半大小
+                    .outputQuality(0.5f) // 值也是在0到1,越接近于1质量越好,越接近于0质量越差
+                    .toFile(desc);
+        }else{
+            file.transferTo(desc);
+        }
         String pathFileName = getPathFileName(baseDir, fileName);
         return pathFileName;
     }
@@ -231,5 +240,15 @@ public class FileUploadUtils
             extension = MimeTypeUtils.getExtension(file.getContentType());
         }
         return extension;
+    }
+
+
+    /**
+     * 判断是否是图片
+     * @param file 表单文件
+     */
+    public static final boolean ImageCheck(MultipartFile file)
+    {
+        return MimeTypeUtils.ImageCheck(file.getContentType());
     }
 }
