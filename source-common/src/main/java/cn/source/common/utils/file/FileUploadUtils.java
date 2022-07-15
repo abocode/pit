@@ -12,6 +12,8 @@ import net.coobird.thumbnailator.Thumbnails;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
@@ -25,13 +27,15 @@ public class FileUploadUtils
     /**
      * 默认大小 50M
      */
+    public static final long DEFAULT_SIZE = 1024;
+    /**
+     * 默认大小 50M
+     */
     public static final long DEFAULT_MAX_SIZE = 50 * 1024 * 1024;
-
     /**
      * 默认的文件名最大长度 100
      */
     public static final int DEFAULT_FILE_NAME_LENGTH = 100;
-
     /**
      * 默认上传的地址
      */
@@ -113,10 +117,26 @@ public class FileUploadUtils
         // 如果是图片，则压缩
         if (ImageCheck(file))
         {
-            // 使用Thumbnailator实现图片压缩
+            // 图片大小；其中file.length()获取的是字节，除以1024可以得到以kb为单位的文件大小
+            long size = file.getSize() / DEFAULT_SIZE;
+            // 图片对象
+            BufferedImage bufferedImage = ImageIO.read(file.getInputStream());
+            // 图片宽度
+            int width = bufferedImage.getWidth();
+            // 使用Thumbnailator实现图片压缩，通过大小与尺寸的判断，保证图片最优
+            float scale = 1f;
+            float quality = 0.8f;
+            // 如果像素宽度大于1500,则缩放到原图一半大小，否则不改变尺寸
+            if(width > 1500){
+                scale = 0.5f;
+            }
+            // 如果图片大于100kb，则压缩到原图的50%质量
+            if(size > 100){
+                quality = 0.5f;
+            }
             Thumbnails.of(file.getInputStream())
-                    .scale(0.5f) // 值在0到1之间,1f就是原图大小,0.5就是原图的一半大小
-                    .outputQuality(0.5f) // 值也是在0到1,越接近于1质量越好,越接近于0质量越差
+                    .scale(scale) // 值在0到1之间,1f就是原图大小,0.5就是原图的一半大小
+                    .outputQuality(quality) // 值也是在0到1,越接近于1质量越好,越接近于0质量越差
                     .toFile(desc);
         }else{
             file.transferTo(desc);
