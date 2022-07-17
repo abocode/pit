@@ -1,7 +1,9 @@
 package cn.source.system.utils;
-
+import cn.hutool.http.HttpUtil;
 import cn.source.common.utils.http.HttpUtils;
 import com.alibaba.fastjson.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -14,6 +16,8 @@ import java.util.Map;
  *
  */
 public class WxUtil {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(WxUtil.class);
 
 	// 与接口配置信息中的Token要一致
     private static String token = "sourcebyte";
@@ -92,7 +96,7 @@ public class WxUtil {
         }
     }
 
-    //获取AccessToken
+    // 获取AccessToken
     public static String obtainAccessToken(String APPID,String SECRET){
         String tokenData = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid="+APPID+"&secret="+SECRET;
         // 返回的用户信息json字符串
@@ -101,7 +105,20 @@ public class WxUtil {
         return String.valueOf(jsonObject.get("access_token"));
     }
 
-    //获取订阅用户的openid和unionid
+    // 获取手机号码
+    public static String getPhoneNum(Object accessToken,String code){
+        String path = "https://api.weixin.qq.com/wxa/business/getuserphonenumber?access_token="+accessToken;
+        //封装参数
+        JSONObject jsonData = new JSONObject();
+        jsonData.put("code", code);
+        // 返回的用户信息json字符串，此处调用Hutool工具类
+        String resp = HttpUtil.post(path, jsonData.toJSONString());
+        JSONObject jsonObject = JSONObject.parseObject(resp);
+        JSONObject phoneInfo = JSONObject.parseObject(jsonObject.get("phone_info").toString());
+        return String.valueOf(phoneInfo.get("phoneNumber"));
+    }
+
+    // 获取订阅用户的openid和unionid
     public static Map obtainUserDetail(String accessToken, String openId){
         String openInfoUrl = "https://api.weixin.qq.com/cgi-bin/user/info?access_token="+accessToken+"&openid="+openId+"&lang=zh_CN";
         String resp = HttpUtils.sendGet(openInfoUrl);
@@ -148,18 +165,6 @@ public class WxUtil {
         JSONObject keyword1 = new JSONObject();
         keyword1.put("value","2112323832748239");
         keyword1.put("color","#173177");
-
-        JSONObject keyword2 = new JSONObject();
-        keyword2.put("value","2022-12-22 00:00:00");
-        keyword2.put("color","#173177");
-
-        JSONObject keyword3 = new JSONObject();
-        keyword3.put("value","199.56元");
-        keyword3.put("color","#173177");
-
-        JSONObject keyword4 = new JSONObject();
-        keyword4.put("value","微信支付");
-        keyword4.put("color","#173177");
 
         JSONObject remark = new JSONObject();
         remark.put("value","温馨提示：请不要爽约哦！");

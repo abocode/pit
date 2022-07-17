@@ -61,8 +61,51 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </sql>
 
     <select id="selectHouseRoomList" parameterType="HouseRoom" resultMap="HouseRoomResult">
-        select DISTINCT house.id, type, house_Hall,house_num,concat(house_Hall,house_num,toilet_num) as houseCode,toilet_num, house_area, room_type, room_code, room_area, direction, price, floor, step_type, start_date, introduce, owner_name, ower_phone, village_id, village_name, address, house_no, pay_type, publish_id, state, create_time, create_name, update_time, update_name, remark, code, face_Url,
-        decoration,agent_Name,agent_Phone,agent_User_Id from house_room as house INNER JOIN house_feature feature on house.id=feature.house_id
+        SELECT DISTINCT
+        house.id,
+        house.type,
+        house_Hall,
+        house_num,
+        concat(
+        house_Hall,
+        house_num,
+        toilet_num
+        ) AS houseCode,
+        toilet_num,
+        house_area,
+        room_type,
+        room_code,
+        room_area,
+        direction,
+        price,
+        floor,
+        step_type,
+        start_date,
+        house.introduce,
+        owner_name,
+        ower_phone,
+        village_id,
+        village_name,
+        address,
+        house_no,
+        pay_type,
+        publish_id,
+        house.state,
+        house.create_time,
+        house.create_name,
+        house.update_time,
+        house.update_name,
+        house.remark,
+        house.CODE,
+        face_Url,
+        decoration,
+        agent_Name,
+        agent_Phone,
+        agent_User_Id
+        FROM
+        house_room AS house
+        INNER JOIN house_feature feature ON house.id = feature.house_id
+        INNER JOIN house_village village on house.village_id=village.id
         <where>
             <if test="type != null "> and type = #{type}</if>
             <if test="houseNum != null  and houseNum != ''"> and house_num = #{houseNum}</if>
@@ -95,6 +138,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="agentName != null  and agentName != ''"> and agent_Name = #{agentName}</if>
             <if test="agentPhone != null  and agentPhone != ''"> and agent_Phone = #{agentPhone}</if>
             <if test="feature != null  and feature != ''"> and feature = #{feature}</if>
+            <if test="villageCity != null  and villageCity != ''"> and village.city = #{villageCity}</if>
         </where>
     </select>
 

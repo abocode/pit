@@ -6,21 +6,18 @@ import cn.source.common.core.domain.AjaxResult;
 import cn.source.common.core.domain.entity.SysUser;
 import cn.source.common.core.domain.model.LoginBody;
 import cn.source.common.core.domain.model.LoginUser;
-import cn.source.common.core.page.TableDataInfo;
 import cn.source.common.core.redis.RedisCache;
 import cn.source.common.utils.SecurityUtils;
 import cn.source.common.utils.StringUtils;
 import cn.source.framework.web.service.SysLoginService;
 import cn.source.framework.web.service.SysPermissionService;
 import cn.source.framework.web.service.TokenService;
-import cn.source.system.domain.SysNotice;
 import cn.source.system.service.ISysNoticeService;
 import cn.source.system.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -111,6 +108,46 @@ public class ThirdLoginController extends BaseController
     }
 
     /**
+     * 微信小程序注册/登录
+     */
+    @PostMapping("/weChatLogin")
+    public AjaxResult weChatLogin(HttpServletRequest request,@RequestBody LoginBody loginBody)
+    {
+        AjaxResult ajax = AjaxResult.success();
+        String msg = "登录成功";
+        if (StringUtils.isEmpty(loginBody.getUsername())){
+            msg = "用户名不能为空";
+            return error(msg);
+        }
+        // 判断是否为新用户
+        SysUser sysUser = userService.selectUserByUserName(loginBody.getUsername());
+        // 不是新用户，创建用户
+        if(sysUser == null){
+            sysUser = new SysUser();
+            sysUser.setUserName(loginBody.getUsername());
+            sysUser.setNickName(loginBody.getUsername());
+            sysUser.setPassword(loginBody.getUsername());
+            sysUser.setPhonenumber(loginBody.getUsername());
+            sysUser.setPassword(SecurityUtils.encryptPassword(loginBody.getUsername()));
+            sysUser.setDeptId(110L);
+            Long[] postIds = new Long[1];
+            postIds[0] = 8L;
+            Long[] roleIds = new Long[1];
+            roleIds[0] = 5L;
+            sysUser.setPostIds(postIds);
+            sysUser.setRoleIds(roleIds);
+            //  保存完用户后，还需要设置用户的角色，部门与岗位
+            userService.insertUser(sysUser);
+        }
+        // 生成token
+        LoginUser loginUser = new LoginUser(sysUser,null);
+        String token = tokenService.createToken(loginUser);
+        ajax.put(Constants.TOKEN, token);
+        ajax.put("loginUser", loginUser);
+        return ajax;
+    }
+
+    /**
      * 获取用户信息
      *
      * @return 用户信息
@@ -129,26 +166,4 @@ public class ThirdLoginController extends BaseController
         ajax.put("permissions", permissions);
         return ajax;
     }
-
-
-    /**
-     * @Description: 获取通知列表
-     */
-    @GetMapping("/notice/findNoticeList")
-    public TableDataInfo findNoticeList(SysNotice notice)
-    {
-        startPage();
-        List<SysNotice> list = noticeService.selectNoticeList(notice);
-        return getDataTable(list);
-    }
-
-    /**
-     * 获取文章详细信息
-     */
-    @GetMapping(value = "/notice/getNotice/{id}")
-    public AjaxResult getNotice(@PathVariable("id") Long id)
-    {
-        return AjaxResult.success(noticeService.selectNoticeById(id));
-    }
-
 }

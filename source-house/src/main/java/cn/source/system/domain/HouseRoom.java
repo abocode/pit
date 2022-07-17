@@ -90,6 +90,9 @@ public class HouseRoom extends BaseEntity
     @Excel(name = "小区名称")
     private String villageName;
 
+    /** 小区城市 */
+    private String villageCity;
+
     /** 详细地址，小区楼栋 */
     @Excel(name = "详细地址")
     private String address;
@@ -478,6 +481,14 @@ public class HouseRoom extends BaseEntity
         this.agentUserId = agentUserId;
     }
 
+    public String getVillageCity() {
+        return villageCity;
+    }
+
+    public void setVillageCity(String villageCity) {
+        this.villageCity = villageCity;
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
@@ -516,6 +527,7 @@ public class HouseRoom extends BaseEntity
             .append("agentName", getAgentName())
             .append("agentPhone", getAgentPhone())
             .append("agentUserId", getAgentUserId())
+             .append("villageCity", getVillageCity())
             .toString();
     }
 }

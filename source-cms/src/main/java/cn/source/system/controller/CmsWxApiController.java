@@ -23,7 +23,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @Description: cms wx api控制类
+ * @Description: cms wx公众号 api控制类
  * @author: 詹Sir
  */
 @RestController
@@ -35,13 +35,13 @@ public class CmsWxApiController extends BaseController {
     @Autowired
     private RedisCache redisCache;
 
-    @Value("${sms.appId}")
+    @Value("${wechat.mp.appId}")
     private String APPID;
 
-    @Value("${sms.secret}")
+    @Value("${wechat.mp.secret}")
     private String SECRET;
 
-    @Value("${sms.accessTokenKey}")
+    @Value("${wechat.mp.accessTokenKey}")
     private String accessTokenKey;
 
     /**
