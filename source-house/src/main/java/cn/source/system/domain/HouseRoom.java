@@ -2,7 +2,6 @@ package cn.source.system.domain;
 
 import cn.source.common.annotation.Excel;
 import cn.source.common.core.domain.BaseEntity;
-import cn.source.common.core.domain.entity.SysUser;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -121,6 +120,9 @@ public class HouseRoom extends BaseEntity
     // @Excel(name = "经纪人电话")
     private String agentPhone;
 
+    // @Excel(name = "经纪人头像")
+    private String agentAvatar;
+
     /** 经纪人id */
     private Long agentUserId;
 
@@ -140,12 +142,10 @@ public class HouseRoom extends BaseEntity
 
     private List<HouseFeature> featureList;
 
-    /** 接收房源亮点查询条件  */
-    private String feature;
-
     private HouseVillage village;
 
-    private SysUser user;
+    /** 接收房源亮点查询条件  */
+    private String feature;
 
     public HouseVillage getVillage() {
         return village;
@@ -153,14 +153,6 @@ public class HouseRoom extends BaseEntity
 
     public void setVillage(HouseVillage village) {
         this.village = village;
-    }
-
-    public SysUser getUser() {
-        return user;
-    }
-
-    public void setUser(SysUser user) {
-        this.user = user;
     }
 
     public List<HouseFeature> getFeatureList() {
@@ -479,6 +471,14 @@ public class HouseRoom extends BaseEntity
 
     public void setAgentUserId(Long agentUserId) {
         this.agentUserId = agentUserId;
+    }
+
+    public String getAgentAvatar() {
+        return agentAvatar;
+    }
+
+    public void setAgentAvatar(String agentAvatar) {
+        this.agentAvatar = agentAvatar;
     }
 
     public String getVillageCity() {

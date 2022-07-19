@@ -40,6 +40,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="agentName"    column="agent_Name"    />
         <result property="agentPhone"    column="agent_Phone"    />
         <result property="agentUserId"    column="agent_User_Id"    />
+        <result property="agentAvatar"    column="agent_Avatar"    />
     </resultMap>
 
     <resultMap type="HouseImage" id="HouseImageResult">
@@ -57,7 +58,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
     <sql id="selectHouseRoomVo">
         select id, type, house_Hall,house_num,concat(house_Hall,house_num,toilet_num) as houseCode,toilet_num, house_area, room_type, room_code, room_area, direction, price, floor, step_type, start_date, introduce, owner_name, ower_phone, village_id, village_name, address, house_no, pay_type, publish_id, state, create_time, create_name, update_time, update_name, remark, code, face_Url,
-        decoration,agent_Name,agent_Phone,agent_User_Id from house_room
+        decoration,agent_Name,agent_Phone,agent_User_Id,agent_Avatar from house_room
     </sql>
 
     <select id="selectHouseRoomList" parameterType="HouseRoom" resultMap="HouseRoomResult">
@@ -101,13 +102,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         decoration,
         agent_Name,
         agent_Phone,
-        agent_User_Id
+        agent_User_Id,agent_Avatar
         FROM
         house_room AS house
         INNER JOIN house_feature feature ON house.id = feature.house_id
         INNER JOIN house_village village on house.village_id=village.id
         <where>
-            <if test="type != null "> and type = #{type}</if>
+            <if test="type != null "> and house.type = #{type}</if>
             <if test="houseNum != null  and houseNum != ''"> and house_num = #{houseNum}</if>
             <if test="toiletNum != null  and toiletNum != ''"> and toilet_num = #{toiletNum}</if>
             <if test="houseArea != null "> and house_area = #{houseArea}</if>
@@ -119,7 +120,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="floor != null  and floor != ''"> and floor = #{floor}</if>
             <if test="stepType != null  and stepType != ''"> and step_type = #{stepType}</if>
             <if test="startDate != null "> and start_date = #{startDate}</if>
-            <if test="introduce != null  and introduce != ''"> and introduce = #{introduce}</if>
+            <if test="introduce != null  and introduce != ''"> and house.introduce = #{introduce}</if>
             <if test="ownerName != null  and ownerName != ''"> and owner_name like concat('%', #{ownerName}, '%')</if>
             <if test="owerPhone != null  and owerPhone != ''"> and ower_phone = #{owerPhone}</if>
             <if test="villageId != null "> and village_id = #{villageId}</if>
@@ -128,11 +129,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="houseNo != null  and houseNo != ''"> and house_no = #{houseNo}</if>
             <if test="payType != null  and payType != ''"> and pay_type = #{payType}</if>
             <if test="publishId != null "> and publish_id = #{publishId}</if>
-            <if test="state != null "> and state = #{state}</if>
-            <if test="createName != null  and createName != ''"> and create_name like concat('%', #{createName}, '%')</if>
-            <if test="updateName != null  and updateName != ''"> and update_name like concat('%', #{updateName}, '%')</if>
+            <if test="state != null "> and house.state = #{state}</if>
+            <if test="createName != null  and createName != ''"> and house.create_name like concat('%', #{createName}, '%')</if>
+            <if test="updateName != null  and updateName != ''"> and house.update_name like concat('%', #{updateName}, '%')</if>
             <if test="houseHall != null  and houseHall != ''"> and house_Hall = #{houseHall}</if>
-            <if test="code != null  and code != ''"> and code = #{code}</if>
+            <if test="code != null  and code != ''"> and house.code = #{code}</if>
             <if test="faceUrl != null  and faceUrl != ''"> and face_Url = #{faceUrl}</if>
             <if test="decoration != null  and decoration != ''"> and decoration = #{decoration}</if>
             <if test="agentName != null  and agentName != ''"> and agent_Name = #{agentName}</if>
@@ -267,7 +268,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
     <update id="updateHouseAgent" parameterType="Map">
         update house_room set agent_User_Id = #{agentUserId},
-        agent_Name = #{agentName},agent_Phone = #{agentPhone}
+        agent_Name = #{agentName},agent_Phone = #{agentPhone},agent_Avatar = #{agentAvatar}
         where id in
         <foreach item="id" collection="ids" open="(" separator="," close=")">
             #{id}

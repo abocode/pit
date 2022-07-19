@@ -111,7 +111,7 @@ public class HouseRoomServiceImpl implements IHouseRoomService
 
     /**
      * 设置房源经纪人
-     *
+     * @param userId 选中经纪人ID
      */
     @Override
     public int updateHouseAgent(Long[] ids,Long userId)
@@ -122,6 +122,7 @@ public class HouseRoomServiceImpl implements IHouseRoomService
         houseMap.put("agentUserId",userId);
         houseMap.put("agentName",sysUser.getNickName());
         houseMap.put("agentPhone",sysUser.getPhonenumber());
+        houseMap.put("agentAvatar",sysUser.getAvatar());
         return houseRoomMapper.updateHouseAgent(houseMap);
     }
 
@@ -194,7 +195,6 @@ public class HouseRoomServiceImpl implements IHouseRoomService
         List<HouseFeature> houseFeatures = houseRoomMapper.selectHouseFeature(houseRoom);
         houseRoom.setImageList(houseImages);
         houseRoom.setFeatureList(houseFeatures);
-        houseRoom.setUser(userService.selectUserById(houseRoom.getPublishId()));
         houseRoom.setVillage(houseVillageService.selectHouseVillageById(houseRoom.getVillageId()));
         return houseRoom;
     }

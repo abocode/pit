@@ -28,7 +28,7 @@ public class HouseApiController extends BaseController {
     private IHouseRoomService houseRoomService;
 
     /**
-     * @Description: 获取文章列表
+     * @Description: 获取小区列表
      */
     @GetMapping("/findVillageList")
     public TableDataInfo findVillageList(HouseVillage houseVillage)
@@ -39,7 +39,7 @@ public class HouseApiController extends BaseController {
     }
 
     /**
-     * @Description: 获取文章列表
+     * @Description: 获取房源列表
      */
     @GetMapping("/findHouseRoomList")
     public TableDataInfo findHouseRoomList(HouseRoom houseRoom)
