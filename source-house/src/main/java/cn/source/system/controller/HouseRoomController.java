@@ -164,6 +164,17 @@ public class HouseRoomController extends BaseController
     }
 
     /**
+     * 上架
+     */
+    @PreAuthorize("@ss.hasPermi('system:houseRoom:more')")
+    @Log(title = "房源上架", businessType = BusinessType.UPDATE)
+    @PutMapping("handleOpen/{ids}")
+    public AjaxResult handleOpen(@PathVariable Long[] ids)
+    {
+        return toAjax(houseRoomService.updateHouseRoomByIds(ids,HouseStatus.SALEING.getCode()));
+    }
+
+    /**
      * 查询用户列表
      */
     @GetMapping("/userList")

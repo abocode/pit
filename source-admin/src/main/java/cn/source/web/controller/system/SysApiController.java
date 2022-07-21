@@ -58,6 +58,24 @@ public class SysApiController extends BaseController
         return AjaxResult.error("修改密码异常，请联系管理员");
     }
 
+    /**
+     * profile 修改用户信息
+     */
+    @PutMapping("/profile/updateProfile")
+    public AjaxResult updateProfile(@RequestBody JSONObject json)
+    {
+        String nickName = json.getString("nickName");
+        String avatar = json.getString("avatar");
+        Long userId = json.getLong("userId");
+        SysUser sysUser = userService.selectUserById(userId);
+        sysUser.setNickName(nickName);
+        sysUser.setAvatar(avatar);
+        if (userService.updateUserProfile(sysUser) > 0)
+        {
+            return AjaxResult.success();
+        }
+        return AjaxResult.error("修改个人信息异常，请联系管理员");
+    }
 
     /**
      * @Description: 获取通知列表
