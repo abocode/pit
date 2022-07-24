@@ -1,14 +1,10 @@
 package cn.source.common.annotation;
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
 /**
  * 数据权限过滤注解
- * 
+ *
  * @author ruoyi
  */
 @Target(ElementType.METHOD)
@@ -22,7 +18,17 @@ public @interface DataScope
     public String deptAlias() default "";
 
     /**
+     * 部门id字段名
+     */
+    public String deptField() default "dept_id";
+
+    /**
      * 用户表的别名
      */
     public String userAlias() default "";
+
+    /**
+     * 用户id字段名
+     */
+    public String userField() default "user_id";
 }

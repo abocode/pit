@@ -70,7 +70,7 @@ public class HouseRoom extends BaseEntity
     private Date startDate;
 
     /** 0：待审核，1：待出租,2:已出租,3:已下架 */
-    @Excel(name = "状态",readConverterExp="0=待审核,1=待出租,2=已出租,3=已下架")
+    // @Excel(name = "状态",readConverterExp="0=待审核,1=待出租,2=已出租,3=已下架")
     private Integer state;
 
     /** 楼层 */
@@ -104,7 +104,7 @@ public class HouseRoom extends BaseEntity
     @Excel(name = "房牌号")
     private String houseNo;
 
-    @Excel(name = "房源代号")
+    // @Excel(name = "房源代号")
     private String code;
 
     /** 付款方式 */

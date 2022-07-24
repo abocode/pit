@@ -140,6 +140,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="agentPhone != null  and agentPhone != ''"> and agent_Phone = #{agentPhone}</if>
             <if test="feature != null  and feature != ''"> and feature = #{feature}</if>
             <if test="villageCity != null  and villageCity != ''"> and village.city = #{villageCity}</if>
+            <!-- 数据范围过滤 -->
+            ${params.dataScope}
         </where>
     </select>
 

@@ -45,7 +45,7 @@ public class HouseApiController extends BaseController {
     public TableDataInfo findHouseRoomList(HouseRoom houseRoom)
     {
         startPage();
-        List<HouseRoom> list = houseRoomService.selectHouseRoomList(houseRoom);
+        List<HouseRoom> list = houseRoomService.findHouseRoomList(houseRoom);
         return getDataTable(list);
     }
 

@@ -1,16 +1,16 @@
 package cn.source.framework.aspectj;
 
-import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.springframework.stereotype.Component;
 import cn.source.common.annotation.DataScope;
 import cn.source.common.core.domain.BaseEntity;
 import cn.source.common.core.domain.entity.SysRole;
 import cn.source.common.core.domain.entity.SysUser;
 import cn.source.common.core.domain.model.LoginUser;
-import cn.source.common.utils.StringUtils;
 import cn.source.common.utils.SecurityUtils;
+import cn.source.common.utils.StringUtils;
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.springframework.stereotype.Component;
 
 /**
  * 数据过滤处理
@@ -68,8 +68,8 @@ public class DataScopeAspect
             // 如果是超级管理员，则不过滤数据
             if (StringUtils.isNotNull(currentUser) && !currentUser.isAdmin())
             {
-                dataScopeFilter(joinPoint, currentUser, controllerDataScope.deptAlias(),
-                        controllerDataScope.userAlias());
+                dataScopeFilter(joinPoint, currentUser, controllerDataScope.deptAlias(),controllerDataScope.deptField(),
+                        controllerDataScope.userAlias(),controllerDataScope.userField());
             }
         }
     }
@@ -79,9 +79,10 @@ public class DataScopeAspect
      *
      * @param joinPoint 切点
      * @param user 用户
-     * @param userAlias 别名
+     * @param deptAlias,deptField 部门表别名，部门id字段名
+     * @param userAlias,userField 用户表别名，用户id字段名
      */
-    public static void dataScopeFilter(JoinPoint joinPoint, SysUser user, String deptAlias, String userAlias)
+    public static void dataScopeFilter(JoinPoint joinPoint, SysUser user, String deptAlias, String deptField, String userAlias, String userField)
     {
         StringBuilder sqlString = new StringBuilder();
 
@@ -96,7 +97,7 @@ public class DataScopeAspect
             else if (DATA_SCOPE_CUSTOM.equals(dataScope))
             {
                 sqlString.append(StringUtils.format(
-                        " OR {}.dept_id IN ( SELECT dept_id FROM sys_role_dept WHERE role_id = {} ) ", deptAlias,
+                        " OR {}.{} IN ( SELECT dept_id FROM sys_role_dept WHERE role_id = {} ) ", deptAlias, deptField,
                         role.getRoleId()));
             }
             else if (DATA_SCOPE_DEPT.equals(dataScope))
@@ -106,14 +107,14 @@ public class DataScopeAspect
             else if (DATA_SCOPE_DEPT_AND_CHILD.equals(dataScope))
             {
                 sqlString.append(StringUtils.format(
-                        " OR {}.dept_id IN ( SELECT dept_id FROM sys_dept WHERE dept_id = {} or find_in_set( {} , ancestors ) )",
-                        deptAlias, user.getDeptId(), user.getDeptId()));
+                        " OR {}.{} IN ( SELECT dept_id FROM sys_dept WHERE dept_id = {} or find_in_set( {} , ancestors ) )",
+                        deptAlias, deptField, user.getDeptId(), user.getDeptId()));
             }
             else if (DATA_SCOPE_SELF.equals(dataScope))
             {
                 if (StringUtils.isNotBlank(userAlias))
                 {
-                    sqlString.append(StringUtils.format(" OR {}.user_id = {} ", userAlias, user.getUserId()));
+                    sqlString.append(StringUtils.format(" OR {}.{} = {} ", userAlias, userField, user.getUserId()));
                 }
                 else
                 {

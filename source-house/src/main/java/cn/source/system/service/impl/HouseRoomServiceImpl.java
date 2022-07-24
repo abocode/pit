@@ -1,5 +1,6 @@
 package cn.source.system.service.impl;
 
+import cn.source.common.annotation.DataScope;
 import cn.source.common.core.domain.entity.SysUser;
 import cn.source.common.exception.ServiceException;
 import cn.source.common.utils.DateUtils;
@@ -16,7 +17,6 @@ import cn.source.system.service.IHouseRoomService;
 import cn.source.system.service.IHouseVillageService;
 import cn.source.system.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -33,10 +33,6 @@ import java.util.Map;
 @Service
 public class HouseRoomServiceImpl implements IHouseRoomService
 {
-
-    @Value("${ruoyi.domain}")
-    private  String domain;
-
     @Autowired
     private ISysUserService userService;
 
@@ -68,6 +64,19 @@ public class HouseRoomServiceImpl implements IHouseRoomService
      * @return 房源详情
      */
     @Override
+    public List<HouseRoom> findHouseRoomList(HouseRoom houseRoom)
+    {
+        return houseRoomMapper.selectHouseRoomList(houseRoom);
+    }
+
+    /**
+     * 查询房源详情列表
+     *
+     * @param houseRoom 房源详情
+     * @return 房源详情
+     */
+    @Override
+    @DataScope(userAlias = "house",userField = "publish_id")
     public List<HouseRoom> selectHouseRoomList(HouseRoom houseRoom)
     {
         return houseRoomMapper.selectHouseRoomList(houseRoom);

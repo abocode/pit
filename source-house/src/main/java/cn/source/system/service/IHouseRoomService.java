@@ -26,6 +26,14 @@ public interface IHouseRoomService
      * @param houseRoom 房源详情
      * @return 房源详情集合
      */
+    public List<HouseRoom> findHouseRoomList(HouseRoom houseRoom);
+
+    /**
+     * 查询房源详情列表
+     *
+     * @param houseRoom 房源详情
+     * @return 房源详情集合
+     */
     public List<HouseRoom> selectHouseRoomList(HouseRoom houseRoom);
 
     /**
