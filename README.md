@@ -62,14 +62,15 @@
 7.  [家居服务](http://47.243.114.191:8080/home)
 8.  [更多业务](https://sourcebyte.cn)
 
-### 平台架构
-![输入图片说明](https://gitee.com/open-source-byte/source-mall/raw/master/doc/boot0.png)
+### 部分截图
+#### 1. 后台截图
+![输入图片说明](https://gitee.com/open-source-byte/source-mall/raw/master/doc/5.png)
+![输入图片说明](https://gitee.com/open-source-byte/source-mall/raw/master/doc/6.png)
 
-### 整体架构
-![输入图片说明](https://gitee.com/open-source-byte/source-mall/raw/master/doc/boot1.png)
-
-### 技术架构
-![输入图片说明](https://gitee.com/open-source-byte/source-mall/raw/master/doc/boot2.png)
+#### 2. 移动端截图
+![输入图片说明](https://sourcebyte.cn/profile/customer/git/house-main1.png)
+![输入图片说明](https://sourcebyte.cn/profile/customer/git/house-main2.png)
+![输入图片说明](https://gitee.com/open-source-byte/source-mall/raw/master/doc/0.jpg)
 
 ### 番外篇
 
