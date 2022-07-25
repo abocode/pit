@@ -5,6 +5,7 @@ import cn.source.common.core.domain.AjaxResult;
 import cn.source.common.core.domain.entity.SysUser;
 import cn.source.common.core.page.TableDataInfo;
 import cn.source.common.utils.SecurityUtils;
+import cn.source.framework.web.service.TokenService;
 import cn.source.system.domain.SysNotice;
 import cn.source.system.service.ISysNoticeService;
 import cn.source.system.service.ISysUserService;
@@ -30,6 +31,16 @@ public class SysApiController extends BaseController
     @Autowired
     private ISysNoticeService noticeService;
 
+    @Autowired
+    private TokenService tokenService;
+
+    /**
+     * 验证令牌是否过期
+     */
+    @GetMapping("/profile/isExpiration")
+    public AjaxResult isExpiration(String token) {
+        return AjaxResult.success(tokenService.isExpiration(token));
+    }
 
     /**
      * profile 重置密码

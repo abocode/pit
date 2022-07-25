@@ -1,5 +1,6 @@
 package cn.source.system.controller;
 
+import cn.source.common.annotation.RepeatSubmit;
 import cn.source.common.constant.HttpStatus;
 import cn.source.common.core.controller.BaseController;
 import cn.source.common.core.domain.AjaxResult;
@@ -54,10 +55,24 @@ public class HouseApiController extends BaseController {
      * @Description: 添加房源信息
      */
     @PostMapping("/saveHouse")
+    @RepeatSubmit
     public AjaxResult saveHouse(@RequestBody HouseRoom houseRoom)
     {
         String msg = "房源添加成功";
         houseRoomService.apiInsertHouseRoom(houseRoom);
+        AjaxResult ajaxResult = new AjaxResult(HttpStatus.SUCCESS,msg,houseRoom);
+        return ajaxResult;
+    }
+
+    /**
+     * @Description: 修改房源信息
+     */
+    @RepeatSubmit
+    @PostMapping("/updateHouse")
+    public AjaxResult updateHouse(@RequestBody HouseRoom houseRoom)
+    {
+        String msg = "房源修改成功";
+        houseRoomService.updateHouseRoom(houseRoom);
         AjaxResult ajaxResult = new AjaxResult(HttpStatus.SUCCESS,msg,houseRoom);
         return ajaxResult;
     }

@@ -1,12 +1,5 @@
 package cn.source.framework.web.service;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
-import javax.servlet.http.HttpServletRequest;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 import cn.source.common.constant.Constants;
 import cn.source.common.core.domain.model.LoginUser;
 import cn.source.common.core.redis.RedisCache;
@@ -19,6 +12,14 @@ import eu.bitwalker.useragentutils.UserAgent;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * token验证处理
@@ -116,6 +117,27 @@ public class TokenService
         claims.put(Constants.LOGIN_USER_KEY, token);
         return createToken(claims);
     }
+
+    /**
+     * 验证令牌是否过期
+     */
+    public boolean isExpiration(String token) {
+        try {
+            Claims claims = parseToken(token);
+            String userKey = getTokenKey(claims.get(Constants.LOGIN_USER_KEY).toString());
+            LoginUser loginUser = redisCache.getCacheObject(userKey);
+            long expireTime = loginUser.getExpireTime();
+            long currentTime = System.currentTimeMillis();
+            if (expireTime - currentTime <= 0)
+            {
+                return true;
+            }
+        } catch (Exception e) {
+            return true;
+        }
+        return false;
+    }
+
 
     /**
      * 验证令牌有效期，相差不足20分钟，自动刷新缓存
