@@ -68,9 +68,10 @@
 ![输入图片说明](https://gitee.com/open-source-byte/source-mall/raw/master/doc/6.png)
 
 #### 2. 移动端截图
-![输入图片说明](https://sourcebyte.cn/profile/customer/git/house-main1.png)
-![输入图片说明](https://sourcebyte.cn/profile/customer/git/house-main2.png)
-![输入图片说明](https://gitee.com/open-source-byte/source-mall/raw/master/doc/0.jpg)
+![租房](https://sourcebyte.cn/profile/customer/git/house-main1.png)
+![租房](https://sourcebyte.cn/profile/customer/git/house-main2.png)
+![商城](https://gitee.com/open-source-byte/source-mall/raw/master/doc/0.jpg)
+![交友](https://gitee.com/open-source-byte/source-love/raw/master/doc/image/0.jpg)
 
 ### 番外篇
 
