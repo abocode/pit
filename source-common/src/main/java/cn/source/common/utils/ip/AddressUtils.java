@@ -1,16 +1,16 @@
 package cn.source.common.utils.ip;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import com.alibaba.fastjson.JSONObject;
 import cn.source.common.config.RuoYiConfig;
 import cn.source.common.constant.Constants;
 import cn.source.common.utils.StringUtils;
 import cn.source.common.utils.http.HttpUtils;
+import com.alibaba.fastjson.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 获取地址类
- * 
+ *
  * @author ruoyi
  */
 public class AddressUtils
@@ -52,5 +52,31 @@ public class AddressUtils
             }
         }
         return address;
+    }
+
+    public static String getRealCityByIP(String ip)
+    {
+        String city = UNKNOWN;
+        // 内网不查询
+        if (RuoYiConfig.isAddressEnabled())
+        {
+            try
+            {
+                String rspStr = HttpUtils.sendGet(IP_URL, "ip=" + ip + "&json=true", Constants.GBK);
+                if (StringUtils.isEmpty(rspStr))
+                {
+                    log.error("获取城市位置异常 {}", ip);
+                    return UNKNOWN;
+                }
+                JSONObject obj = JSONObject.parseObject(rspStr);
+                String region = obj.getString("pro");
+                city = obj.getString("city");
+            }
+            catch (Exception e)
+            {
+                log.error("获取城市位置异常 {}", ip);
+            }
+        }
+        return city;
     }
 }

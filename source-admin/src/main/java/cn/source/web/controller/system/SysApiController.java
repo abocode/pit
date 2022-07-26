@@ -5,6 +5,9 @@ import cn.source.common.core.domain.AjaxResult;
 import cn.source.common.core.domain.entity.SysUser;
 import cn.source.common.core.page.TableDataInfo;
 import cn.source.common.utils.SecurityUtils;
+import cn.source.common.utils.ServletUtils;
+import cn.source.common.utils.ip.AddressUtils;
+import cn.source.common.utils.ip.IpUtils;
 import cn.source.framework.web.service.TokenService;
 import cn.source.system.domain.SysNotice;
 import cn.source.system.service.ISysNoticeService;
@@ -36,6 +39,16 @@ public class SysApiController extends BaseController
 
     /**
      * 验证令牌是否过期
+     */
+    @GetMapping("/profile/getRealCityByIP")
+    public AjaxResult getRealCityByIP(String token) {
+        String ip = IpUtils.getIpAddr(ServletUtils.getRequest());
+        String address = AddressUtils.getRealCityByIP(ip);
+        return AjaxResult.success(address);
+    }
+
+    /**
+     * 通过IP获取到城市信息
      */
     @GetMapping("/profile/isExpiration")
     public AjaxResult isExpiration(String token) {

@@ -1,7 +1,8 @@
 package cn.source.system.service.impl;
 
-import cn.source.common.annotation.DataScope;
+import cn.source.common.core.domain.entity.SysRole;
 import cn.source.common.core.domain.entity.SysUser;
+import cn.source.common.core.domain.model.LoginUser;
 import cn.source.common.exception.ServiceException;
 import cn.source.common.utils.DateUtils;
 import cn.source.common.utils.SecurityUtils;
@@ -43,6 +44,16 @@ public class HouseRoomServiceImpl implements IHouseRoomService
     private HouseRoomMapper houseRoomMapper;
 
     /**
+     * 数据权限过滤关键字
+     */
+    public static final String DATA_SCOPE = "dataScope";
+
+    /**
+     * 仅本人数据权限
+     */
+    public static final String DATA_SCOPE_SELF = "5";
+
+    /**
      * 查询房源详情
      *
      * @param id 房源详情主键
@@ -76,9 +87,29 @@ public class HouseRoomServiceImpl implements IHouseRoomService
      * @return 房源详情
      */
     @Override
-    @DataScope(userAlias = "house",userField = "publish_id")
     public List<HouseRoom> selectHouseRoomList(HouseRoom houseRoom)
     {
+        // 获取当前的用户
+        LoginUser loginUser = SecurityUtils.getLoginUser();
+        if (StringUtils.isNotNull(loginUser))
+        {
+            SysUser currentUser = loginUser.getUser();
+            // 如果是超级管理员，则不过滤数据
+            if (StringUtils.isNotNull(currentUser) && !currentUser.isAdmin())
+            {
+                for (SysRole role : currentUser.getRoles())
+                {
+                    String dataScope = role.getDataScope();
+                    // 仅有查询自己的数据权限时，将本人的房源，与负责的房源(经纪人)都查询出来
+                    if (DATA_SCOPE_SELF.equals(dataScope))
+                    {
+                        String appendSql = StringUtils.format("house.agent_User_Id = {} ", currentUser.getUserId());
+                        appendSql += StringUtils.format(" OR house.publish_id = {} ", currentUser.getUserId());
+                        houseRoom.getParams().put(DATA_SCOPE, " AND (" + appendSql + ")");
+                    }
+                }
+            }
+        }
         return houseRoomMapper.selectHouseRoomList(houseRoom);
     }
 
