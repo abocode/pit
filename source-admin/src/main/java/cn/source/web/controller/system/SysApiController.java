@@ -38,10 +38,10 @@ public class SysApiController extends BaseController
     private TokenService tokenService;
 
     /**
-     * 验证令牌是否过期
+     * 通过IP获取到城市信息
      */
-    @GetMapping("/profile/getRealCityByIP")
-    public AjaxResult getRealCityByIP(String token) {
+    @GetMapping("/profile/getRealCity")
+    public AjaxResult getRealCity() {
         String ip = IpUtils.getIpAddr(ServletUtils.getRequest());
         String address = AddressUtils.getRealCityByIP(ip);
         return AjaxResult.success(address);
@@ -49,6 +49,15 @@ public class SysApiController extends BaseController
 
     /**
      * 通过IP获取到城市信息
+     */
+    @GetMapping("/profile/getRealCityByIP")
+    public AjaxResult getRealCityByIP(String ip) {
+        String address = AddressUtils.getRealCityByIP(ip);
+        return AjaxResult.success(address);
+    }
+
+    /**
+     * 验证令牌是否过期
      */
     @GetMapping("/profile/isExpiration")
     public AjaxResult isExpiration(String token) {
