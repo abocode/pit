@@ -330,7 +330,73 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         delete from house_image where house_id = #{id}
     </delete>
 
+    <delete id="deleteHouseHeartByHouseId" parameterType="Long">
+        delete from house_heart where house_id = #{id}
+    </delete>
+
     <delete id="deleteHouseFeatureByHouseId" parameterType="Long">
         delete from house_feature where house_id = #{id}
     </delete>
+
+    <insert id="saveHeart" parameterType="Map" useGeneratedKeys="true" keyProperty="id">
+        INSERT house_heart set house_id=#{houseId},user_id=#{userId},create_time=now()
+    </insert>
+
+    <delete id="cancelHeart" parameterType="Map">
+        delete from house_heart where house_id = #{houseId} and user_id = #{userId}
+    </delete>
+
+    <select id="selectHouseHeart" parameterType="Map" resultType="long">
+       select id from house_heart where house_id = #{houseId} and user_id = #{userId}
+    </select>
+
+    <select id="findHouseHeartList" parameterType="long" resultMap="HouseRoomResult">
+        SELECT DISTINCT
+        house.id,
+        house.type,
+        house_Hall,
+        house_num,
+        concat(
+        house_Hall,
+        house_num,
+        toilet_num
+        ) AS houseCode,
+        toilet_num,
+        house_area,
+        room_type,
+        room_code,
+        room_area,
+        direction,
+        price,
+        floor,
+        step_type,
+        start_date,
+        house.introduce,
+        owner_name,
+        ower_phone,
+        village_id,
+        village_name,
+        address,
+        house_no,
+        pay_type,
+        publish_id,
+        house.state,
+        house.create_time,
+        house.create_name,
+        house.update_time,
+        house.update_name,
+        house.remark,
+        house.CODE,
+        face_Url,
+        decoration,
+        agent_Name,
+        agent_Phone,
+        agent_User_Id,agent_Avatar
+        FROM
+        house_room AS house
+        INNER JOIN house_feature feature ON house.id = feature.house_id
+        INNER JOIN house_village village on house.village_id=village.id
+        INNER JOIN house_heart heart on house.id=heart.house_id
+        where user_id = #{userId}
+    </select>
 </mapper>

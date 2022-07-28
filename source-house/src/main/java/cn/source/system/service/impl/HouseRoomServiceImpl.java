@@ -63,8 +63,8 @@ public class HouseRoomServiceImpl implements IHouseRoomService
     public HouseRoom selectHouseRoomById(Long id)
     {
         HouseRoom houseRoom = houseRoomMapper.selectHouseRoomById(id);
-        houseRoom.setFeatureList(houseRoomMapper.selectHouseFeature(houseRoom));
-        houseRoom.setImageList(houseRoomMapper.selectHouseImage(houseRoom));
+        // houseRoom.setFeatureList(houseRoomMapper.selectHouseFeature(houseRoom));
+        // houseRoom.setImageList(houseRoomMapper.selectHouseImage(houseRoom));
         return houseRoom;
     }
 
@@ -208,6 +208,7 @@ public class HouseRoomServiceImpl implements IHouseRoomService
     {
         houseRoomMapper.deleteHouseFeatureByHouseId(id);
         houseRoomMapper.deleteHouseImageByHouseId(id);
+        houseRoomMapper.deleteHouseHeartByHouseId(id);
         return houseRoomMapper.deleteHouseRoomById(id);
     }
 
@@ -231,11 +232,11 @@ public class HouseRoomServiceImpl implements IHouseRoomService
      */
     @Override
     public HouseRoom selectDetailHouseRoom(HouseRoom houseRoom) {
-        List<HouseImage> houseImages = houseRoomMapper.selectHouseImage(houseRoom);
-        List<HouseFeature> houseFeatures = houseRoomMapper.selectHouseFeature(houseRoom);
-        houseRoom.setImageList(houseImages);
-        houseRoom.setFeatureList(houseFeatures);
         houseRoom.setVillage(houseVillageService.selectHouseVillageById(houseRoom.getVillageId()));
+        List<HouseImage> houseImages = houseRoomMapper.selectHouseImage(houseRoom);
+        houseRoom.setImageList(houseImages);
+        List<HouseFeature> houseFeatures = houseRoomMapper.selectHouseFeature(houseRoom);
+        houseRoom.setFeatureList(houseFeatures);
         return houseRoom;
     }
 
@@ -342,5 +343,42 @@ public class HouseRoomServiceImpl implements IHouseRoomService
             successMsg.insert(0, "恭喜您，数据已全部导入成功！共 " + successNum + " 条，数据如下：");
         }
         return successMsg.toString();
+    }
+
+    /**
+     * 收藏/取消收藏
+     */
+    @Override
+    public int saveHeart(boolean heart,Long userId,String houseId)
+    {
+        Map<String,Object> houseMap=new HashMap<String,Object>();
+        houseMap.put("houseId",houseId);
+        houseMap.put("userId",userId);
+        if(heart){
+            // 收藏
+            return houseRoomMapper.saveHeart(houseMap);
+        }else {
+            // 取消收藏
+            return houseRoomMapper.cancelHeart(houseMap);
+        }
+    }
+
+    /**
+     * 查询收藏数据
+     */
+    @Override
+    public Long selectHouseHeart(Map<String,Object> houseMap)
+    {
+        return houseRoomMapper.selectHouseHeart(houseMap);
+    }
+
+
+    /**
+     * 获取收藏房源列表
+     */
+    @Override
+    public List<HouseRoom> findHouseHeartList(Long userId)
+    {
+        return houseRoomMapper.findHouseHeartList(userId);
     }
 }

@@ -102,6 +102,14 @@ public interface HouseRoomMapper
     public int deleteHouseImageByHouseId(Long id);
 
     /**
+     * 删除收藏记录
+     *
+     * @param id 房源详情主键
+     * @return 结果
+     */
+    public int deleteHouseHeartByHouseId(Long id);
+
+    /**
      * 新增房源特色
      *
      * @param houseRoom 房源详情
@@ -132,4 +140,24 @@ public interface HouseRoomMapper
      * @return 房源详情
      */
     public List<HouseFeature> selectHouseFeature(HouseRoom houseRoom);
+
+    /**
+     * 房源收藏
+     */
+    public int saveHeart(Map<String,Object> houseMap);
+
+    /**
+     * 房源取消收藏
+     */
+    public int cancelHeart(Map<String,Object> houseMap);
+
+    /**
+     * 查询收藏数据
+     */
+    public Long selectHouseHeart(Map<String,Object> houseMap);
+
+    /**
+     * 获取收藏房源列表
+     */
+    public List<HouseRoom> findHouseHeartList(Long userId);
 }

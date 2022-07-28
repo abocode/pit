@@ -147,6 +147,9 @@ public class HouseRoom extends BaseEntity
     /** 接收房源亮点查询条件  */
     private String feature;
 
+    /** 是否点赞,true为点赞了  */
+    private boolean heart;
+
     public HouseVillage getVillage() {
         return village;
     }
@@ -487,6 +490,14 @@ public class HouseRoom extends BaseEntity
 
     public void setVillageCity(String villageCity) {
         this.villageCity = villageCity;
+    }
+
+    public boolean isHeart() {
+        return heart;
+    }
+
+    public void setHeart(boolean heart) {
+        this.heart = heart;
     }
 
     @Override

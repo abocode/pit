@@ -3,6 +3,7 @@ package cn.source.system.service;
 import cn.source.system.domain.HouseRoom;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 房源详情Service接口
@@ -97,7 +98,22 @@ public interface IHouseRoomService
     public HouseRoom selectDetailHouseRoom(HouseRoom houseRoom);
 
     /**
-     * 查询房源相关详情信息
+     * 导入房源
      */
     public String importHouse(List<HouseRoom> houseList, Boolean isUpdateSupport);
+
+    /**
+     * 收藏/取消收藏
+     */
+    public int saveHeart(boolean heart,Long userId,String houseId);
+
+    /**
+     * 查询收藏数据
+     */
+    public Long selectHouseHeart(Map<String,Object> houseMap);
+
+    /**
+     * 获取收藏房源列表
+     */
+    public List<HouseRoom> findHouseHeartList(Long userId);
 }
