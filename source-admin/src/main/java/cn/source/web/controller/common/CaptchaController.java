@@ -115,8 +115,10 @@ public class CaptchaController
      * 获取发送手机验证码
      */
     @GetMapping(value = "/api/captchaSms")
-    public boolean captchaSms(String loginName)
+    public AjaxResult captchaSms(String loginName)
     {
+        AjaxResult ajax = AjaxResult.success();
+        boolean send  = false;
         // 当验证码失效才进行操作
         if(redisCache.getCacheObject(loginName) == null){
             String code = CodeUtil.getCapthCode();
@@ -127,9 +129,11 @@ public class CaptchaController
             // logger.info(code);
             // 云信短信
             DySmsUtil.sendSms(loginName, obj,accessKeyId,accessKeySecret,accessKeytemplate);
-            return true;
+            send  = true;
         }else{
-            return true;
+            send  = false;
         }
+        ajax.put("send",send);
+        return ajax;
     }
 }
