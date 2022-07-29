@@ -8,8 +8,6 @@ import cn.source.common.utils.DateUtils;
 import cn.source.common.utils.SecurityUtils;
 import cn.source.common.utils.StringUtils;
 import cn.source.common.utils.uuid.CodeUtil;
-import cn.source.system.domain.HouseFeature;
-import cn.source.system.domain.HouseImage;
 import cn.source.system.domain.HouseRoom;
 import cn.source.system.domain.HouseVillage;
 import cn.source.system.enums.HouseStatus;
@@ -63,8 +61,8 @@ public class HouseRoomServiceImpl implements IHouseRoomService
     public HouseRoom selectHouseRoomById(Long id)
     {
         HouseRoom houseRoom = houseRoomMapper.selectHouseRoomById(id);
-        // houseRoom.setFeatureList(houseRoomMapper.selectHouseFeature(houseRoom));
-        // houseRoom.setImageList(houseRoomMapper.selectHouseImage(houseRoom));
+        houseRoom.setFeatureList(houseRoomMapper.selectHouseFeature(houseRoom));
+        houseRoom.setImageList(houseRoomMapper.selectHouseImage(houseRoom));
         return houseRoom;
     }
 
@@ -233,10 +231,8 @@ public class HouseRoomServiceImpl implements IHouseRoomService
     @Override
     public HouseRoom selectDetailHouseRoom(HouseRoom houseRoom) {
         houseRoom.setVillage(houseVillageService.selectHouseVillageById(houseRoom.getVillageId()));
-        List<HouseImage> houseImages = houseRoomMapper.selectHouseImage(houseRoom);
-        houseRoom.setImageList(houseImages);
-        List<HouseFeature> houseFeatures = houseRoomMapper.selectHouseFeature(houseRoom);
-        houseRoom.setFeatureList(houseFeatures);
+        // houseRoom.setImageList(houseRoomMapper.selectHouseImage(houseRoom));
+        // houseRoom.setFeatureList(houseRoomMapper.selectHouseFeature(houseRoom));
         return houseRoom;
     }
 
