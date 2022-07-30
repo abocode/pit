@@ -89,7 +89,9 @@
  **综上，低代码平台包含零代码平台的所有能力，从企业经营长远发展目标考虑，便捷的开发形式+卓越的拓展能力是核心，低代码平台能够帮助企业解决业务多重挑战。** 
 
 ### 「开源字节」交流群
-![开源字节](https://gitee.com/open-source-byte/source-vue/raw/master/doc/%E5%BC%80%E6%BA%90%E5%AD%97%E8%8A%82_qq_vip.png)
+<p align="left">
+<img alt="logo" src="https://gitee.com/open-source-byte/source-vue/raw/master/doc/%E5%BC%80%E6%BA%90%E5%AD%97%E8%8A%82_qq_vip.png" width="200">
+</p>
 
 ### 结语
 
