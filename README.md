@@ -65,6 +65,7 @@
 ### 部分截图
 #### 1. 后台截图
 ![输入图片说明](https://gitee.com/open-source-byte/source-mall/raw/master/doc/5.png)
+![输入图片说明](https://gitee.com/open-source-byte/house/raw/master/docs/image/manage1.png)
 ![输入图片说明](https://gitee.com/open-source-byte/source-mall/raw/master/doc/6.png)
 
 #### 2. 移动端截图
