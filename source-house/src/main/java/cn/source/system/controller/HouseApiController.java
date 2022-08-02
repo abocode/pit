@@ -97,11 +97,10 @@ public class HouseApiController extends BaseController {
     @PostMapping("/saveHeart")
     public AjaxResult saveHeart(@RequestBody JSONObject json)
     {
-        String msg = "点赞";
         boolean heart = json.getBoolean("heart");
         Long userId = json.getLong("userId");
         String houseId = json.getString("houseId");
-        houseRoomService.saveHeart(heart,userId,houseId);
+        String msg = houseRoomService.saveHeart(heart,userId,houseId);
         AjaxResult ajaxResult = new AjaxResult(HttpStatus.SUCCESS,msg);
         return ajaxResult;
     }
@@ -112,7 +111,7 @@ public class HouseApiController extends BaseController {
     @GetMapping("/selectHouseHeart")
     public AjaxResult selectHouseHeart(Long userId,String houseId)
     {
-        String msg = "点赞";
+        String msg = "是否收藏";
         Map<String,Object> houseMap=new HashMap<String,Object>();
         houseMap.put("houseId",houseId);
         houseMap.put("userId",userId);

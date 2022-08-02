@@ -345,18 +345,21 @@ public class HouseRoomServiceImpl implements IHouseRoomService
      * 收藏/取消收藏
      */
     @Override
-    public int saveHeart(boolean heart,Long userId,String houseId)
+    public String saveHeart(boolean heart,Long userId,String houseId)
     {
+        String msg = "收藏成功";
         Map<String,Object> houseMap=new HashMap<String,Object>();
         houseMap.put("houseId",houseId);
         houseMap.put("userId",userId);
-        if(heart){
+        if(!heart){
             // 收藏
-            return houseRoomMapper.saveHeart(houseMap);
+            houseRoomMapper.saveHeart(houseMap);
         }else {
             // 取消收藏
-            return houseRoomMapper.cancelHeart(houseMap);
+            houseRoomMapper.cancelHeart(houseMap);
+            msg = "取消收藏";
         }
+        return msg;
     }
 
     /**

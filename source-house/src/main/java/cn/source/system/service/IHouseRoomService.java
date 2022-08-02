@@ -105,7 +105,7 @@ public interface IHouseRoomService
     /**
      * 收藏/取消收藏
      */
-    public int saveHeart(boolean heart,Long userId,String houseId);
+    public String saveHeart(boolean heart,Long userId,String houseId);
 
     /**
      * 查询收藏数据
