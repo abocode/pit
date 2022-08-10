@@ -57,7 +57,7 @@ public class MiniWxApiController extends BaseController {
     public AjaxResult getAccessToken(){
         AjaxResult ajax = AjaxResult.success();
         Object token = redisCache.getCacheObject(accessTokenKey);
-        if(StringUtils.isNull(token)){
+        if(StringUtils.isNull(token) || token.equals("null")){
             token = WxUtil.obtainAccessToken(APPID, SECRET);
             redisCache.setCacheObject(accessTokenKey,token,30,TimeUnit.MINUTES);
         }

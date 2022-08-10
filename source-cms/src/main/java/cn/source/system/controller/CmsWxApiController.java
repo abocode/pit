@@ -94,7 +94,7 @@ public class CmsWxApiController extends BaseController {
     public Object getAccessToken(){
         // 2000上限
         Object token = redisCache.getCacheObject(accessTokenKey);
-        if(StringUtils.isNull(token)){
+        if(StringUtils.isNull(token) || token.equals("null")){
             token = WxUtil.obtainAccessToken(APPID, SECRET);
             redisCache.setCacheObject(accessTokenKey,token,30,TimeUnit.MINUTES);
         }
