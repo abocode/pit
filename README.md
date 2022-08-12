@@ -18,16 +18,16 @@
 * 使用DataV展示可视化大屏数据。
 * 使用IReport实现企业级Web报表。
 * 使用kkFileView实现在线预览，支持doc,docx,Excel,pdf,txt,zip,rar,图片等
-* 使用JustAuth实现三方应用OAuth2授权 。
+* 使用OAuth2实现三方应用授权 。
 * 支持多种登录方式（扫码登录，验证码登录，密码登录）
 * 支持加载动态权限菜单，控制菜单权限，按钮权限，数据权限。
 * 高效率开发，使用代码生成器可以一键生成前后端代码。
 
 ### 在线体验
 
+* 官网地址：https://sourcebyte.cn
 * 演示地址：http://boot.sourcebyte.cn:8081/login
 * 开发文档：http://doc.sourcebyte.cn:8082/index.html
-* 官网地址：https://sourcebyte.cn
 
 ### 内置系统功能
 
@@ -53,14 +53,15 @@
 
 ### 内置业务功能 
 
-1.  [内容管理](https://sourcebyte.cn)
-2.  [租房程序](http://47.243.114.191:8080/house)
-3.  [开源商城](https://sourcebyte.cn)
-4.  [开源WMS](https://sourcebyte.cn)
-5.  [智慧党建](http://8.141.150.22)
-6.  [相亲社区](http://47.243.114.191:8080/love)
-7.  [家居服务](http://47.243.114.191:8080/home)
-8.  [更多业务](https://sourcebyte.cn)
+1.  [内容管理系统](https://sourcebyte.cn)
+2.  [在线租房系统](http://47.243.114.191:8080/house)
+3.  [开源商城系统](https://sourcebyte.cn)
+4.  [开源WMS系统](https://sourcebyte.cn)
+5.  [智慧党建系统](http://8.141.150.22)
+6.  [相亲社区系统](http://47.243.114.191:8080/love)
+7.  [家居服务系统](http://47.243.114.191:8080/home)
+8.  [资产管理系统](https://sourcebyte.cn)
+8.  [更多业务功能](https://sourcebyte.cn)
 
 ### 部分截图
 #### 1. 后台截图
