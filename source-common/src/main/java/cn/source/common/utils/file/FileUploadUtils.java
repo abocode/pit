@@ -125,22 +125,28 @@ public class FileUploadUtils
             int width = bufferedImage.getWidth();
             // 使用Thumbnailator实现图片压缩，通过大小与尺寸的判断，保证图片最优
             float scale = 1f;
-            float quality = 0.8f;
-            // 如果像素宽度大于1500,则缩放到原图一半大小，否则不改变尺寸
-            if(width > 1500){
+            float quality = 1f;
+            // 如果像素宽度大于3000,则缩放到原图一半大小，否则不改变尺寸
+            if(width > 3000){
                 scale = 0.5f;
             }
-            // 如果图片大于5000kb，则压缩到原图的50%质量
-            if(size > 5000){
+            // 如果像素宽度大于1500,则缩放到原图80%大小，否则不改变尺寸
+            if(width > 1500){
+                scale = 0.8f;
+            }
+            // 如果图片大于3000kb，则压缩到原图的50%质量
+            if(size > 3000){
                 quality = 0.5f;
             }
-            // 如果图片大于200kb，才去压缩图片
-            if(size > 200){
-                Thumbnails.of(file.getInputStream())
-                    .scale(scale) // 值在0到1之间,1f就是原图大小,0.5就是原图的一半大小
-                    .outputQuality(quality) // 值也是在0到1,越接近于1质量越好,越接近于0质量越差
-                    .toFile(desc);
+            // 如果图片大于1500kb，则压缩到原图的80%质量
+            if(size > 1500){
+                quality = 0.8f;
             }
+            // 去掉图片冗余信息后可以有效压缩图像，同时又不会损害图像的有效信息。
+            Thumbnails.of(file.getInputStream())
+                .scale(scale) // 值在0到1之间,1f就是原图大小,0.5就是原图的一半大小
+                .outputQuality(quality) // 值也是在0到1,越接近于1质量越好,越接近于0质量越差
+                .toFile(desc);
         }else{
             file.transferTo(desc);
         }
