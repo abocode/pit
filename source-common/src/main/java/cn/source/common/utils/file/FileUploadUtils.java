@@ -130,14 +130,17 @@ public class FileUploadUtils
             if(width > 1500){
                 scale = 0.5f;
             }
-            // 如果图片大于100kb，则压缩到原图的50%质量
-            if(size > 100){
+            // 如果图片大于5000kb，则压缩到原图的50%质量
+            if(size > 5000){
                 quality = 0.5f;
             }
-            Thumbnails.of(file.getInputStream())
+            // 如果图片大于200kb，才去压缩图片
+            if(size > 200){
+                Thumbnails.of(file.getInputStream())
                     .scale(scale) // 值在0到1之间,1f就是原图大小,0.5就是原图的一半大小
                     .outputQuality(quality) // 值也是在0到1,越接近于1质量越好,越接近于0质量越差
                     .toFile(desc);
+            }
         }else{
             file.transferTo(desc);
         }
