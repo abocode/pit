@@ -1,6 +1,7 @@
 package cn.source.system.mapper;
 
 import cn.source.system.domain.MallOrder;
+import cn.source.system.domain.MallOrderGoods;
 
 import java.util.List;
 
@@ -35,6 +36,14 @@ public interface MallOrderMapper
      * @return 结果
      */
     public int insertMallOrder(MallOrder mallOrder);
+
+    /**
+     * 新增订单，保存商品信息
+     *
+     * @param mallOrderGoodsList
+     * @return 结果
+     */
+    public int insertMallOrderGoods(List<MallOrderGoods> mallOrderGoodsList);
 
     /**
      * 修改订单信息

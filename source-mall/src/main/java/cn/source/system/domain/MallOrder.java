@@ -8,6 +8,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 订单信息对象 mall_order
@@ -70,6 +71,9 @@ public class MallOrder extends BaseEntity
 
     /** 收货地址 */
     private String receiverAddress;
+
+    /** 订单商品信息 */
+    private List<MallOrderGoods> mallOrderGoodsList;
 
     public void setId(Long id)
     {
@@ -193,6 +197,14 @@ public class MallOrder extends BaseEntity
 
     public void setReceiverAddress(String receiverAddress) {
         this.receiverAddress = receiverAddress;
+    }
+
+    public List<MallOrderGoods> getMallOrderGoodsList() {
+        return mallOrderGoodsList;
+    }
+
+    public void setMallOrderGoodsList(List<MallOrderGoods> mallOrderGoodsList) {
+        this.mallOrderGoodsList = mallOrderGoodsList;
     }
 
     @Override

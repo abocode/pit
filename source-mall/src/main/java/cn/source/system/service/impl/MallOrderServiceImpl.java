@@ -6,6 +6,7 @@ import cn.source.common.utils.SecurityUtils;
 import cn.source.common.utils.StringUtils;
 import cn.source.common.utils.uuid.CodeUtil;
 import cn.source.system.domain.MallOrder;
+import cn.source.system.domain.MallOrderGoods;
 import cn.source.system.mapper.MallOrderMapper;
 import cn.source.system.service.IMallOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,8 +67,16 @@ public class MallOrderServiceImpl implements IMallOrderService
         mallOrder.setOrderCreateTime(DateUtils.getNowDate());
         mallOrder.setCreateTime(DateUtils.getNowDate());
         mallOrder.setSortNo(0);
-        // 需要将商品信息保存
-        return mallOrderMapper.insertMallOrder(mallOrder);
+        // 保存订单
+        mallOrderMapper.insertMallOrder(mallOrder);
+        List< MallOrderGoods > mallOrderGoodsList = mallOrder.getMallOrderGoodsList();
+        for (MallOrderGoods mallOrderGoods : mallOrderGoodsList)
+        {
+            // 设置订单id
+            mallOrderGoods.setOrderId(mallOrder.getId());
+        }
+        // 保存订单商品信息
+        return mallOrderMapper.insertMallOrderGoods(mallOrderGoodsList);
     }
 
     /**
