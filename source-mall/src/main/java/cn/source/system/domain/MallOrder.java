@@ -32,6 +32,18 @@ public class MallOrder extends BaseEntity
     @Excel(name = "创建时间", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss")
     private Date orderCreateTime;
 
+    /** 收货人 */
+    @Excel(name = "收货人")
+    private String receiver;
+
+    /** 收货人电话 */
+    @Excel(name = "联系方式")
+    private String receiverPhone;
+
+    /** 收货地址 */
+    @Excel(name = "收货地址")
+    private String receiverAddress;
+
     /** 支付金额 */
     @Excel(name = "支付金额")
     private BigDecimal payAmount;
@@ -50,7 +62,6 @@ public class MallOrder extends BaseEntity
     private String payStatus;
 
     /** 优惠金额 */
-    @Excel(name = "优惠金额")
     private Long disAmount;
 
     /** 订单状态 */
@@ -62,15 +73,6 @@ public class MallOrder extends BaseEntity
 
     /** 用户id */
     private Long userId;
-
-    /** 收货人 */
-    private String receiver;
-
-    /** 收货人电话 */
-    private String receiverPhone;
-
-    /** 收货地址 */
-    private String receiverAddress;
 
     /** 订单商品信息 */
     private List<MallOrderGoods> mallOrderGoodsList;
