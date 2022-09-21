@@ -7,6 +7,11 @@
 [![AUR](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg)](https://gitee.com/open-source-byte/source-vue/LICENSE)
 [![](https://img.shields.io/badge/Author-开源字节-orange.svg)](http://sourcebyte.com)
 [![](https://img.shields.io/badge/Blog-官方网站-blue.svg)](https://sourcebyte.cn)
+<p align="center">
+	<a href="https://gitee.com/open-source-byte/source-vue"><img src="https://gitee.com/open-source-byte/source-vue/badge/star.svg?theme=dark"></a>
+	<a href="https://sourcebyte.cn"><img src="https://img.shields.io/badge/RuoYi-v1.0.0-brightgreen.svg"></a>
+	<a href="https://sourcebyte.cn"><img src="https://img.shields.io/github/license/mashape/apistatus.svg"></a>
+</p>
 
 ### 平台简介
 开源字节是一套全部开源的快速开发平台，毫无保留给个人及企业免费使用。拒绝虚假开源，售卖商业版，程序员不骗程序员！！
