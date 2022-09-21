@@ -5,7 +5,7 @@
 <h4 align="center">基于SpringBoot+Vue前后端分离的Java快速开发框架</h4>
 <p align="center">
 	<a href="https://gitee.com/open-source-byte/source-vue"><img src="https://gitee.com/open-source-byte/source-vue/badge/star.svg?theme=dark"></a>
-	<a href="https://sourcebyte.cn"><img src="https://img.shields.io/badge/source-v1.0.0-brightgreen.svg"></a>
+	<a href="https://sourcebyte.cn"><img src="https://img.shields.io/badge/开源字节-v1.0.0-brightgreen.svg"></a>
 	<a href="https://sourcebyte.cn"><img src="https://img.shields.io/github/license/mashape/apistatus.svg"></a>
 </p>
 
