@@ -3,11 +3,9 @@
 </p>
 <h1 align="center" style="margin: 30px 0 30px; font-weight: bold;">Source-Vue v1.0.0</h1>
 <h4 align="center">基于SpringBoot+Vue前后端分离的Java快速开发框架</h4>
-<p align="center">
 [![AUR](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg)](https://gitee.com/open-source-byte/source-vue/LICENSE)
 [![](https://img.shields.io/badge/Author-开源字节-orange.svg)](http://sourcebyte.com)
 [![](https://img.shields.io/badge/Blog-官方网站-blue.svg)](https://sourcebyte.cn)
-</p>
 
 ### 平台简介
 开源字节是一套全部开源的快速开发平台，毫无保留给个人及企业免费使用。拒绝虚假开源，售卖商业版，程序员不骗程序员！！
