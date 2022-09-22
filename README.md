@@ -98,7 +98,7 @@
 ### QQ交流群
 | 开源1群(851042670) | 开源2群(522723115) | 开源3群(862649072) |
 | :------: | :------: | :------: |
-| <img src="https://gitee.com/open-source-byte/source-vue/raw/master/doc/qq01.png" width="200px">| <img src="https://gitee.com/open-source-byte/source-vue/raw/master/doc/qq01.png" width="200px">| <img src="https://gitee.com/open-source-byte/source-vue/raw/master/doc/qqvip01.png" width="200px">| 
+| <img src="https://gitee.com/open-source-byte/source-vue/raw/master/doc/qq01.png" width="200px">| <img src="https://gitee.com/open-source-byte/source-vue/raw/master/doc/qq02.png" width="200px">| <img src="https://gitee.com/open-source-byte/source-vue/raw/master/doc/qqvip01.png" width="200px">| 
 
 ### 结语
 
