@@ -124,12 +124,22 @@ xss:
   # 匹配链接
   urlPatterns: /system/*,/monitor/*,/tool/*
 
-# 短信&微信配置
+# sms 短信
 sms:
   id: 换你自己的
   pwd: 换你自己的
   template: 换你自己的
-  # wx
-  appId: 换你自己的
-  secret: 换你自己的
-  accessTokenKey: 换你自己的
+
+# wechat 微信
+wechat:
+  # 公众号
+  mp:
+    # 生活助手
+    appId: 换你自己的
+    secret: 换你自己的
+    accessTokenKey: MP-ACCESS-TOKEN-AUTH
+  # 小程序
+  mini:
+    appId: 换你自己的
+    secret: 换你自己的
+    accessTokenKey: MINI-ACCESS-TOKEN-AUTH
