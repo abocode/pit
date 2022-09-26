@@ -58,15 +58,16 @@
 
 ### 内置业务功能 
 
-1.  [内容管理系统](https://sourcebyte.cn)
+1.  [CRM内容管理系统](https://sourcebyte.cn)
 2.  [在线租房系统](http://47.243.114.191:8080/house)
 3.  [开源商城系统](https://sourcebyte.cn)
-4.  [开源WMS系统](https://sourcebyte.cn)
+4.  [WMS材料管理系统](https://sourcebyte.cn)
 5.  [智慧党建系统](http://8.141.150.22)
-6.  [相亲社区系统](http://47.243.114.191:8080/love)
-7.  [家居服务系统](http://47.243.114.191:8080/home)
-8.  [资产管理系统](https://sourcebyte.cn)
-8.  [更多业务功能](https://sourcebyte.cn)
+6.  [阳光村务系统](https://sourcebyte.cn)
+7.  [相亲社区系统](http://47.243.114.191:8080/love)
+8.  [家居服务系统](http://47.243.114.191:8080/home)
+9.  [资产管理系统](https://sourcebyte.cn)
+10.  [更多业务功能](https://sourcebyte.cn)
 
 ### 部分截图
 #### 1. 后台截图
