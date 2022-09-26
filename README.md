@@ -96,7 +96,7 @@
  **综上，低代码平台包含零代码平台的所有能力，从企业经营长远发展目标考虑，便捷的开发形式+卓越的拓展能力是核心，低代码平台能够帮助企业解决业务多重挑战。** 
 
 ### QQ交流群
-| 开源1群(851042670) | 开源2群(522723115) | 开源3群(862649072) |
+| 1群已满(851042670) | 2群(522723115) | 3群(862649072) |
 | :------: | :------: | :------: |
 | <img src="https://gitee.com/open-source-byte/source-vue/raw/master/doc/qq01.png" width="200px">| <img src="https://gitee.com/open-source-byte/source-vue/raw/master/doc/qq02.png" width="200px">| <img src="https://gitee.com/open-source-byte/source-vue/raw/master/doc/qq03.png" width="200px">| 
 
