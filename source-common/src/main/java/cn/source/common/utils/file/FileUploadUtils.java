@@ -142,11 +142,14 @@ public class FileUploadUtils
             if(size > 1500){
                 quality = 0.8f;
             }
-            // 去掉图片冗余信息后可以有效压缩图像，同时又不会损害图像的有效信息。
-            Thumbnails.of(file.getInputStream())
-                .scale(scale) // 值在0到1之间,1f就是原图大小,0.5就是原图的一半大小
-                .outputQuality(quality) // 值也是在0到1,越接近于1质量越好,越接近于0质量越差
-                .toFile(desc);
+            // 大于200kb才压缩
+            if(size > 200){
+                // 去掉图片冗余信息后可以有效压缩图像，同时又不会损害图像的有效信息。
+                Thumbnails.of(file.getInputStream())
+                        .scale(scale) // 值在0到1之间,1f就是原图大小,0.5就是原图的一半大小
+                        .outputQuality(quality) // 值也是在0到1,越接近于1质量越好,越接近于0质量越差
+                        .toFile(desc);
+            }
         }else{
             file.transferTo(desc);
         }
