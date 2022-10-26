@@ -6,7 +6,7 @@
 <p align="center">
 	<a href="https://gitee.com/open-source-byte/source-vue" target="_blank"><img src="https://gitee.com/open-source-byte/source-vue/badge/star.svg?theme=dark"></a>
         <a href="https://gitee.com/open-source-byte/source-vue" target="_blank">
-            <img src="https://gitee.com/open-source-byte/source-vue/fork.svg?theme=dark">
+            <img src="https://gitee.com/open-source-byte/source-vue/badge/fork.svg?theme=dark">
         </a>
 	<a href="https://sourcebyte.cn" target="_blank"><img src="https://img.shields.io/badge/开源字节-v1.0.0-brightgreen.svg"></a>
 	<a href=" http://boot.sourcebyte.cn:8081/login" target="_blank"><img src="https://img.shields.io/github/license/mashape/apistatus.svg"></a>
