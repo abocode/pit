@@ -248,13 +248,6 @@
                 <version>${source.version}</version>
             </dependency>
 
-            <!-- 相亲模块-->
-            <dependency>
-                <groupId>cn.source</groupId>
-                <artifactId>source-love</artifactId>
-                <version>${source.version}</version>
-            </dependency>
-
             <!-- 商城模块-->
             <dependency>
                 <groupId>cn.source</groupId>
@@ -283,8 +276,6 @@
         <module>source-flow</module>
         <!--新增wms模块-->
         <module>source-wms</module>
-        <!--新增love模块-->
-        <module>source-love</module>
         <!--新增mall模块-->
         <module>source-mall</module>
     </modules>

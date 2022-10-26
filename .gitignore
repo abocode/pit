@@ -44,4 +44,3 @@ nbdist/
 !*/build/*.xml
 /source-admin/src/main/resources/*.yml
 /source-wms/
-/source-love/

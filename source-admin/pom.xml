@@ -79,37 +79,26 @@
             <groupId>cn.source</groupId>
             <artifactId>source-cms</artifactId>
         </dependency>
-
         <!-- 租房-->
         <dependency>
             <groupId>cn.source</groupId>
             <artifactId>source-house</artifactId>
         </dependency>
-
         <!-- 即时通讯-->
         <dependency>
             <groupId>cn.source</groupId>
             <artifactId>source-im</artifactId>
         </dependency>
-
         <!-- 工作流-->
         <dependency>
             <groupId>cn.source</groupId>
             <artifactId>source-flow</artifactId>
         </dependency>
-
         <!-- wms-->
         <dependency>
             <groupId>cn.source</groupId>
             <artifactId>source-wms</artifactId>
         </dependency>
-
-        <!-- 相亲-->
-        <dependency>
-            <groupId>cn.source</groupId>
-            <artifactId>source-love</artifactId>
-        </dependency>
-
         <!-- 购物-->
         <dependency>
             <groupId>cn.source</groupId>
