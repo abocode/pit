@@ -149,6 +149,8 @@ public class FileUploadUtils
                         .scale(scale) // 值在0到1之间,1f就是原图大小,0.5就是原图的一半大小
                         .outputQuality(quality) // 值也是在0到1,越接近于1质量越好,越接近于0质量越差
                         .toFile(desc);
+            }else{
+                file.transferTo(desc);
             }
         }else{
             file.transferTo(desc);
