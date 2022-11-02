@@ -150,6 +150,12 @@ public class HouseRoom extends BaseEntity
     /** 是否点赞,true为点赞了  */
     private boolean heart;
 
+    /** 精度  */
+    private String longitude;
+
+    /** 纬度  */
+    private String latitude;
+
     public HouseVillage getVillage() {
         return village;
     }
@@ -498,6 +504,22 @@ public class HouseRoom extends BaseEntity
 
     public void setHeart(boolean heart) {
         this.heart = heart;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
     }
 
     @Override
