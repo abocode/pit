@@ -94,11 +94,6 @@
             <groupId>cn.source</groupId>
             <artifactId>source-flowable</artifactId>
         </dependency>
-        <!-- wms-->
-        <dependency>
-            <groupId>cn.source</groupId>
-            <artifactId>source-wms</artifactId>
-        </dependency>
         <!-- 购物-->
         <dependency>
             <groupId>cn.source</groupId>
