@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+	<modelVersion>4.0.0</modelVersion>
 
     <groupId>cn.source</groupId>
     <artifactId>source</artifactId>
@@ -237,7 +237,7 @@
             <!-- flow模块-->
             <dependency>
                 <groupId>cn.source</groupId>
-                <artifactId>source-flow</artifactId>
+                <artifactId>source-flowable</artifactId>
                 <version>${source.version}</version>
             </dependency>
 
@@ -266,7 +266,7 @@
         <!--新增IM模块-->
         <module>source-im</module>
         <!--新增工作流模块-->
-        <module>source-flow</module>
+        <module>source-flowable</module>
         <!--新增mall模块-->
         <module>source-mall</module>
     </modules>
