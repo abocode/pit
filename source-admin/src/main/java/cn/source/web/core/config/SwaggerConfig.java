@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import cn.source.common.config.RuoYiConfig;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.models.auth.In;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -17,17 +16,18 @@ import springfox.documentation.service.ApiKey;
 import springfox.documentation.service.AuthorizationScope;
 import springfox.documentation.service.Contact;
 import springfox.documentation.service.SecurityReference;
-import springfox.documentation.service.SecurityScheme;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  * Swagger2的接口配置
- * 
+ *
  * @author ruoyi
  */
 @Configuration
+@EnableSwagger2
 public class SwaggerConfig
 {
     /** 系统基础配置 */
@@ -48,7 +48,7 @@ public class SwaggerConfig
     @Bean
     public Docket createRestApi()
     {
-        return new Docket(DocumentationType.OAS_30)
+        return new Docket(DocumentationType.SWAGGER_2)
                 // 是否启用Swagger
                 .enable(enabled)
                 // 用来创建该API的基本信息，展示在文档的页面中（自定义展示的信息）
@@ -58,7 +58,7 @@ public class SwaggerConfig
                 // 扫描所有有注解的api，用这种方式更灵活
                 .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                 // 扫描指定包中的swagger注解
-                // .apis(RequestHandlerSelectors.basePackage("cn.source.project.tool.swagger"))
+                // .apis(RequestHandlerSelectors.basePackage("com.ruoyi.project.tool.swagger"))
                 // 扫描所有 .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.any())
                 .build()
@@ -71,10 +71,10 @@ public class SwaggerConfig
     /**
      * 安全模式，这里指定token通过Authorization头请求头传递
      */
-    private List<SecurityScheme> securitySchemes()
+    private List<ApiKey> securitySchemes()
     {
-        List<SecurityScheme> apiKeyList = new ArrayList<SecurityScheme>();
-        apiKeyList.add(new ApiKey("Authorization", "Authorization", In.HEADER.toValue()));
+        List<ApiKey> apiKeyList = new ArrayList<ApiKey>();
+        apiKeyList.add(new ApiKey("Authorization", "Authorization", "header"));
         return apiKeyList;
     }
 
@@ -87,7 +87,7 @@ public class SwaggerConfig
         securityContexts.add(
                 SecurityContext.builder()
                         .securityReferences(defaultAuth())
-                        .operationSelector(o -> o.requestMappingPattern().matches("/.*"))
+                        .forPaths(PathSelectors.regex("^(?!auth).*$"))
                         .build());
         return securityContexts;
     }

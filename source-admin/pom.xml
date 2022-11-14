@@ -24,10 +24,10 @@
             <optional>true</optional> <!-- 表示依赖不会传递 -->
         </dependency>
 
-        <!-- swagger3-->
+        <!-- swagger2-->
         <dependency>
             <groupId>io.springfox</groupId>
-            <artifactId>springfox-boot-starter</artifactId>
+            <artifactId>springfox-swagger2</artifactId>
         </dependency>
 
         <!-- 防止进入swagger页面报类型转换错误，排除3.0.0中的引用，手动增加1.6.2版本 -->
@@ -92,7 +92,7 @@
         <!-- 工作流-->
         <dependency>
             <groupId>cn.source</groupId>
-            <artifactId>source-flow</artifactId>
+            <artifactId>source-flowable</artifactId>
         </dependency>
         <!-- wms-->
         <dependency>
