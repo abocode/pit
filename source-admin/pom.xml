@@ -95,10 +95,10 @@
             <artifactId>source-mall</artifactId>
         </dependency>
         <!-- 工作流-->
-        <!--<dependency>
+        <dependency>
             <groupId>cn.source</groupId>
             <artifactId>source-flowable</artifactId>
-        </dependency>-->
+        </dependency>
     </dependencies>
 
     <build>

@@ -186,6 +186,13 @@
                 <version>${source.version}</version>
             </dependency>
 
+            <!-- flowable -->
+            <dependency>
+                <groupId>org.flowable</groupId>
+                <artifactId>flowable-spring-boot-starter-process</artifactId>
+                <version>${flowable.version}</version>
+            </dependency>
+
             <!-- 代码生成-->
             <dependency>
                 <groupId>cn.source</groupId>
@@ -243,11 +250,11 @@
             </dependency>
 
             <!-- flow模块-->
-            <!--<dependency>
+            <dependency>
                 <groupId>cn.source</groupId>
                 <artifactId>source-flowable</artifactId>
                 <version>${source.version}</version>
-            </dependency>-->
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -267,7 +274,7 @@
         <!--新增mall模块-->
         <module>source-mall</module>
         <!--新增工作流模块-->
-        <!--<module>source-flowable</module>-->
+        <module>source-flowable</module>
     </modules>
     <packaging>pom</packaging>
 
