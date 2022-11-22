@@ -64,7 +64,6 @@ public class WfCategoryController extends BaseController
     /**
      * 获取流程分类详细信息
      */
-    @PreAuthorize("@ss.hasPermi('flowable:category:query')")
     @GetMapping(value = "/{categoryId}")
     public AjaxResult getInfo(@PathVariable("categoryId") Long categoryId)
     {

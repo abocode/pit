@@ -62,7 +62,6 @@ public class WfFormController extends BaseController
     /**
      * 获取流程单信息详细信息
      */
-    @PreAuthorize("@ss.hasPermi('flowable:form:query')")
     @GetMapping(value = "/{formId}")
     public AjaxResult getInfo(@PathVariable("formId") Long formId)
     {
