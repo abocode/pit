@@ -20,7 +20,7 @@ import java.text.AttributedCharacterIterator;
 import java.text.AttributedString;
 
 /**
- * @author XuanXuan
+ * @author 詹Sir
  * @date 2021/4/4 23:58
  */
 public class CustomProcessDiagramCanvas extends DefaultProcessDiagramCanvas {

@@ -8,7 +8,7 @@ import cn.source.common.core.domain.BaseEntity;
 /**
  * 流程单信息对象 wf_form
  * 
- * @author Andy
+ * @author 詹Sir
  * @date 2022-11-01
  */
 public class WfForm extends BaseEntity

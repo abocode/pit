@@ -3,7 +3,7 @@ package cn.source.flowable.common.enums;
 /**
  * 流程意见类型
  *
- * @author Xuan xuan
+ * @author 詹Sir
  * @date 2021/4/19
  */
 public enum FlowComment {

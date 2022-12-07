@@ -10,7 +10,7 @@ import org.flowable.task.api.history.HistoricTaskInstance;
 import java.util.*;
 
 /**
- * @author XuanXuan
+ * @author 詹Sir
  * @date 2021-04-03 23:57
  */
 @Slf4j
@@ -514,7 +514,6 @@ public class FlowableUtils {
                 Set<String> dirtyDataLine = FlowableUtils.iteratorFindDirtyRoads(dirtyTask, null, null, Arrays.asList(dirtyPoint.split(",")), null);
                 // 自己本身也是脏线路上的点，加进去
                 dirtyDataLine.add(stack.peek().getTaskDefinitionKey());
-                log.info(stack.peek().getTaskDefinitionKey() + "点脏路线集合：" + dirtyDataLine);
                 // 是全新的需要添加的脏线路
                 boolean isNewDirtyData = true;
                 for (int i = 0; i < dirtyDataLineList.size(); i++) {
@@ -584,7 +583,6 @@ public class FlowableUtils {
             // 保存新的 userTaskKey 在下个循环中使用
             userTaskKey = new StringBuilder(stack.pop().getTaskDefinitionKey());
         }
-        log.info("清洗后的历史节点数据：" + lastHistoricTaskInstanceList);
         return lastHistoricTaskInstanceList;
     }
 }

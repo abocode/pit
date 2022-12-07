@@ -3,7 +3,7 @@ package cn.source.flowable.common.constant;
 /**
  * 流程常量信息
  *
- * @author Xuan xuan
+ * @author 詹Sir
  * @date 2021/4/17 22:46
  */
 public class ProcessConstants {

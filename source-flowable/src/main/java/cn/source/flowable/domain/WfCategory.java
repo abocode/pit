@@ -8,7 +8,7 @@ import cn.source.common.core.domain.BaseEntity;
 /**
  * 流程分类对象 wf_category
  * 
- * @author Andy
+ * @author 詹Sir
  * @date 2022-10-31
  */
 public class WfCategory extends BaseEntity

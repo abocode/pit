@@ -6,7 +6,7 @@ import cn.source.flowable.domain.WfCategory;
 /**
  * 流程分类Mapper接口
  * 
- * @author Andy
+ * @author 詹Sir
  * @date 2022-10-31
  */
 public interface WfCategoryMapper
