@@ -7,7 +7,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 /**
  * 房源特色对象 house_feature
  *
- * @author ruoyi
+ * @author 詹Sir
  * @date 2022-03-27
  */
 public class HouseFeature extends BaseEntity

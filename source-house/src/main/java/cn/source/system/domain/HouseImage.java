@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 /**
  * 房源图片对象 house_image
  *
- * @author ruoyi
+ * @author 詹Sir
  * @date 2022-03-27
  */
 public class HouseImage extends BaseEntity

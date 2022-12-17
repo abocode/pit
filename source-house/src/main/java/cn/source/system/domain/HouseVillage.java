@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 /**
  * 房源小区对象 house_village
  *
- * @author ruoyi
+ * @author 詹Sir
  * @date 2022-03-27
  */
 public class HouseVillage extends BaseEntity
@@ -32,6 +32,7 @@ public class HouseVillage extends BaseEntity
     @Excel(name = "区")
     private String area;
 
+    /** 区域，便于显示城市信息 */
     private String areaCode;
 
     /** 名称 */

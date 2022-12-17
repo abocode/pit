@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * 出租信息Mapper接口
  *
- * @author ruoyi
+ * @author 詹Sir
  * @date 2022-03-27
  */
 public interface HouseUserMapper

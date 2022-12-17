@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * 房源详情Mapper接口
  *
- * @author ruoyi
+ * @author 詹Sir
  * @date 2022-03-27
  */
 public interface HouseRoomMapper

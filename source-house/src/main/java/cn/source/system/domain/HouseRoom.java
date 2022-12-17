@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * 房源详情对象 house_room
  *
- * @author ruoyi
+ * @author 詹Sir
  * @date 2022-03-27
  */
 public class HouseRoom extends BaseEntity

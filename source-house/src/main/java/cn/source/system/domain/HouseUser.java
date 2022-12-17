@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 /**
  * 出租信息对象 house_user
  *
- * @author ruoyi
+ * @author 詹Sir
  * @date 2022-03-27
  */
 public class HouseUser extends BaseEntity
