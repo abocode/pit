@@ -59,7 +59,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectHouseRoomVo">
-        select id, type, house_Hall,house_num,concat(house_Hall,house_num,toilet_num) as houseCode,toilet_num, house_area, room_type, room_code, room_area, direction, price, floor, step_type, start_date, introduce, owner_name, ower_phone, village_id, village_name, address, house_no, pay_type, publish_id, state, create_time, create_name, update_time, update_name, remark, code, face_Url,
+        select id, type, house_Hall,house_num,concat(house_num,house_Hall,toilet_num) as houseCode,toilet_num, house_area, room_type, room_code, room_area, direction, price, floor, step_type, start_date, introduce, owner_name, ower_phone, village_id, village_name, address, house_no, pay_type, publish_id, state, create_time, create_name, update_time, update_name, remark, code, face_Url,
         decoration,agent_Name,agent_Phone,agent_User_Id,agent_Avatar,longitude,latitude from house_room
     </sql>
 
@@ -70,9 +70,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         house_Hall,
         house_num,
         concat(
-        house_Hall,
-        house_num,
-        toilet_num
+        house_num,house_Hall,toilet_num
         ) AS houseCode,
         toilet_num,
         house_area,
@@ -366,9 +364,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         house_Hall,
         house_num,
         concat(
-        house_Hall,
-        house_num,
-        toilet_num
+        house_num,house_Hall,toilet_num
         ) AS houseCode,
         toilet_num,
         house_area,
