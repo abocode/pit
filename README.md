@@ -1,7 +1,7 @@
 <p align="center">
 	<img alt="logo" src="https://sourcebyte.cn/assets/logo_c_64.5eb3acc5.png">
 </p>
-<h1 align="center" style="margin: 30px 0 30px; font-weight: bold;">Source-Vue v1.0.0</h1>
+<h1 align="center" style="margin: 30px 0 30px; font-weight: bold;">Source-Vue v2.0.0</h1>
 <h4 align="center">基于SpringBoot+Vue前后端分离的Java快速开发框架</h4>
 <p align="center">
 	<a href="https://gitee.com/open-source-byte/source-vue" target="_blank"><img src="https://gitee.com/open-source-byte/source-vue/badge/star.svg?theme=dark"></a>
@@ -20,6 +20,7 @@
 * 后端采用Spring Boot、Mybatis、Spring Security、Redis & Jwt。
 * 使用Flowable、Bpmn.io实现工作流。
 * 使用Websocket实现即时通讯。
+* 使用COS实现对象存储。
 * 使用Handsontable实现类Excel拖拽赋值的Web数据录入。
 * 使用Vxe-table实现单行编辑，即时保存效果。
 * 使用ECharts,UCharts实现数据可视化图表。
