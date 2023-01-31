@@ -35,7 +35,7 @@
 ### 在线体验
 
 * 官网地址：https://sourcebyte.vip
-* 演示地址：http://boot.sourcebyte.vip/login
+* 演示地址：http://boot.sourcebyte.vip
 * 开发文档：http://doc.sourcebyte.vip
 * 小程序
 
