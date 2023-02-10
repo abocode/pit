@@ -8,8 +8,8 @@
         <a href="https://gitee.com/open-source-byte/source-vue" target="_blank">
             <img src="https://gitee.com/open-source-byte/source-vue/badge/fork.svg?theme=dark">
         </a>
-	<a href="https://sourcebyte.cn" target="_blank"><img src="https://img.shields.io/badge/开源字节-v2.0.0-brightgreen.svg"></a>
-	<a href=" http://boot.sourcebyte.cn:8081/login" target="_blank"><img src="https://img.shields.io/github/license/mashape/apistatus.svg"></a>
+	<a href="https://sourcebyte.vip" target="_blank"><img src="https://img.shields.io/badge/开源字节-v2.0.0-brightgreen.svg"></a>
+	<a href=" http://boot.sourcebyte.vip" target="_blank"><img src="https://img.shields.io/github/license/mashape/apistatus.svg"></a>
 </p>
 
 ### 平台简介
@@ -65,13 +65,13 @@
 
 ### 内置业务功能 
 
-1.  [内容管理系统](https://sourcebyte.cn)
+1.  [内容管理系统](https://sourcebyte.vip)
 2.  [在线租房系统](http://43.142.193.197:8080/house)
-3.  [开源商城系统](https://sourcebyte.cn)
+3.  [开源商城系统](https://sourcebyte.vip)
 4.  [智慧党建系统](http://8.141.150.22)
 5.  [相亲社区系统](http://43.142.193.197:8080/love)
 6.  [家居服务系统](http://43.142.193.197:8080/home)
-7.  [更多业务功能](https://sourcebyte.cn)
+7.  [更多业务功能](https://sourcebyte.vip)
 
 ### 部分截图
 #### 1. 后台截图
@@ -80,8 +80,8 @@
 ![输入图片说明](https://gitee.com/open-source-byte/source-mall/raw/master/doc/6.png)
 
 #### 2. 移动端截图
-![租房](https://sourcebyte.cn/profile/customer/git/house-main1.png)
-![租房](https://sourcebyte.cn/profile/customer/git/house-main2.png)
+![租房](https://sourcebyte.vip/profile/customer/git/house-main1.png)
+![租房](https://sourcebyte.vip/profile/customer/git/house-main2.png)
 ![商城](https://gitee.com/open-source-byte/source-mall/raw/master/doc/0.jpg)
 
 ### 番外篇

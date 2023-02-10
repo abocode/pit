@@ -21,7 +21,7 @@ public class MsgConstant
     /**
      * 管理员头像
      */
-    public static final String ADMIN_AVATAR ="https://sourcebyte.cn/assets/logo_c_64.5eb3acc5.png";
+    public static final String ADMIN_AVATAR ="https://sourcebyte.vip/assets/logo_c_64.5eb3acc5.png";
 
 
 

@@ -263,7 +263,7 @@ public class HouseRoomServiceImpl implements IHouseRoomService
         }
         houseRoom.setCode(CodeUtil.getCodeByUUId());
         // 封面图设置默认值
-        houseRoom.setFaceUrl("https://sourcebyte.cn/profile/customer/file/loading.png");
+        houseRoom.setFaceUrl("https://sourcebyte.vip/profile/customer/file/loading.png");
         houseRoomMapper.insertHouseRoom(houseRoom);
         if(StringUtils.isNotNull(houseRoom.getFeatureList()) && houseRoom.getFeatureList().size()>0){
             houseRoomMapper.insertHouseFeature(houseRoom);

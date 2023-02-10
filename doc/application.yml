@@ -1,11 +1,11 @@
 # 项目相关配置
 ruoyi:
   # 名称
-  name: 开源字节(https://sourcebyte.cn)
+  name: 开源字节(https://sourcebyte.vip)
   # 版本
   version: 1.0.0
   # 版权年份
-  copyrightYear: 2022
+  copyrightYear: 2023
   # 实例演示开关
   demoEnabled: true
   # 文件路径 示例（ Windows配置C:/source-vue/static/uploadPath，Linux配置 /home/source-vue/uploadPath）
@@ -15,7 +15,7 @@ ruoyi:
   # 验证码类型 math 数组计算 char 字符验证
   captchaType: math
   # 域名，图片url前缀
-  domain: https://sourcebyte.cn
+  domain: https://sourcebyte.vip
 
 # 开发环境配置
 server:
@@ -123,6 +123,15 @@ xss:
   excludes: /system/notice,/system/item,/system/article,/system/goods
   # 匹配链接
   urlPatterns: /system/*,/monitor/*,/tool/*
+
+# Flowable 配置
+flowable:
+  # 关闭定时任务 job
+  async-executor-activate: false
+  # 库与数据库表结构不一致时，会自动将数据库表结构升级至新版本。
+  database-schema-update: true
+  idm:
+    enabled: false
 
 # sms 短信
 sms:
