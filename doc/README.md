@@ -12,6 +12,6 @@
 
 ![输入图片说明](https://sourcebyte.vip/web-api/profile/upload/2022/10/18/bce03408-ee8e-4dd7-b54d-60a571d2bb2a.jpg)
 
-微信扫一扫，回复“ **管理员密码** ”，获取密码(source-vue.sql中的管理员密码)
+微信扫一扫，回复“ **管理员密码** ”，获取密码
 
 
