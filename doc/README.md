@@ -4,7 +4,7 @@
 * 演示地址：http://boot.sourcebyte.vip
 * 开发文档：http://doc.sourcebyte.vip
 
-### 文件说明
+### 友情提示
 
 * 数据库文件(SQL)：默认使用MySql数据库，首次运行执行source-vue.sql进行初始化
 * 配置文件(yml)：首次运行将配置文件拷贝到项目中
