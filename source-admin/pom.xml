@@ -94,11 +94,6 @@
             <groupId>cn.source</groupId>
             <artifactId>source-mall</artifactId>
         </dependency>
-        <!-- 工作流-->
-        <dependency>
-            <groupId>cn.source</groupId>
-            <artifactId>source-flowable</artifactId>
-        </dependency>
     </dependencies>
 
     <build>
