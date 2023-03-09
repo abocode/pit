@@ -42,4 +42,6 @@ nbdist/
 !*/build/*.java
 !*/build/*.html
 !*/build/*.xml
+rebel.xml
+
 /source-admin/src/main/resources/*.yml
