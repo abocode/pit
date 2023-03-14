@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -38,6 +39,21 @@ public class MiniWxApiController extends BaseController {
     private String accessTokenKey;
 
     /**
+     * 获取AccessToken
+     */
+    @GetMapping("/getAccessToken")
+    public AjaxResult getAccessToken(){
+        AjaxResult ajax = AjaxResult.success();
+        Object token = redisCache.getCacheObject(accessTokenKey);
+        if(StringUtils.isNull(token) || token.equals("null")){
+            token = WxUtil.obtainAccessToken(APPID, SECRET);
+            redisCache.setCacheObject(accessTokenKey,token,30,TimeUnit.MINUTES);
+        }
+        ajax.put(accessTokenKey,token);
+        return ajax;
+    }
+
+    /**
      * 获取用户手机号码
      */
     @GetMapping("/getPhoneNum")
@@ -51,17 +67,14 @@ public class MiniWxApiController extends BaseController {
     }
 
     /**
-     * 获取AccessToken
+     * 获取小程序码
      */
-    @GetMapping("/getAccessToken")
-    public AjaxResult getAccessToken(){
+    @GetMapping("/getQrCode")
+    public AjaxResult getQrCode(String qrCodePath) throws IOException {
         AjaxResult ajax = AjaxResult.success();
-        Object token = redisCache.getCacheObject(accessTokenKey);
-        if(StringUtils.isNull(token) || token.equals("null")){
-            token = WxUtil.obtainAccessToken(APPID, SECRET);
-            redisCache.setCacheObject(accessTokenKey,token,30,TimeUnit.MINUTES);
-        }
-        ajax.put(accessTokenKey,token);
+        Object token = WxUtil.obtainAccessToken(APPID, SECRET);
+        String qrCode = WxUtil.getQrCode(token,qrCodePath);
+        ajax.put("qrCode",qrCode);
         return ajax;
     }
 

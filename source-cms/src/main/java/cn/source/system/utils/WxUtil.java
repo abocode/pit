@@ -1,10 +1,17 @@
 package cn.source.system.utils;
+import cn.hutool.core.io.FileUtil;
+import cn.hutool.http.HttpRequest;
 import cn.hutool.http.HttpUtil;
+import cn.source.common.config.RuoYiConfig;
+import cn.source.common.utils.DateUtils;
+import cn.source.common.utils.file.FileUploadUtils;
 import cn.source.common.utils.http.HttpUtils;
+import cn.source.common.utils.uuid.IdUtils;
 import com.alibaba.fastjson.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
@@ -18,6 +25,9 @@ import java.util.Map;
 public class WxUtil {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(WxUtil.class);
+
+    // 文件默认保存路径，读取配置文件
+    private static String defaultBaseDir = RuoYiConfig.getProfile();
 
 	// 与接口配置信息中的Token要一致
     private static String token = "sourcebyte";
@@ -134,6 +144,31 @@ public class WxUtil {
         userDetailMap.put("subscribeTime",subscribeTime);
         userDetailMap.put("unionid",unionid);
         return userDetailMap;
+    }
+
+    // 获取小程序码
+    public static String getQrCode(Object accessToken,String qrCodePath) throws IOException {
+        String url = "https://api.weixin.qq.com/wxa/getwxacode?access_token="+accessToken;
+        // 封装参数
+        JSONObject jsonData = new JSONObject();
+        jsonData.put("path", qrCodePath);
+        jsonData.put("width", 430);
+        jsonData.put("auto_color", false);
+        jsonData.put("auto_color", false);
+        Map<String,Object> line_color = new HashMap<>();
+        line_color.put("r", 0);
+        line_color.put("g", 0);
+        line_color.put("b", 0);
+        jsonData.put("line_color", line_color);
+        // 这里要特别注意，调用二维码接口返回的是二进制，所以返回值必须为Byte类型，返回String类型就会变成乱码
+        byte[] qrCode = HttpRequest.post(url).header("post", "application/json").body(jsonData.toJSONString()).execute().bodyBytes();
+        // 这里是自定义保存的文件路径
+        String fileName = "/qrcode/"+ DateUtils.datePath() + "/" + IdUtils.fastUUID() + ".png";
+        // 这里就直接把二进制保存为文件了
+        FileUtil.writeBytes(qrCode, FileUploadUtils.getAbsoluteFile(defaultBaseDir, fileName));
+        // 返回图片路径
+        String pathFileName = FileUploadUtils.getPathFileName(defaultBaseDir, fileName);
+        return pathFileName;
     }
 
     /*    **//**
