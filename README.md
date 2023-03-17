@@ -74,7 +74,8 @@
 6.  [家居服务系统](http://43.142.193.197:8080/home)
 7.  [集训营管理系统](https://sourcebyte.vip)
 8.  [订单管理系统](https://sourcebyte.vip)
-9.  [更多业务功能](https://sourcebyte.vip)
+9.  [同城信息发布系统](https://sourcebyte.vip)
+10. [更多业务功能](https://sourcebyte.vip)
 
 ### 部分截图
 #### 1. 后台截图
