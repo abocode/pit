@@ -277,9 +277,7 @@ public class HouseRoomServiceImpl implements IHouseRoomService
     /**
      * 导入房源数据
      *
-     * @param userList 房源数据列表
      * @param isUpdateSupport 是否更新支持，如果已存在，则进行更新数据
-     * @param loginUser 用户
      * @return 结果
      */
     @Override
