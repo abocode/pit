@@ -12,7 +12,8 @@ import cn.source.framework.web.service.TokenService;
 import cn.source.system.domain.SysNotice;
 import cn.source.system.service.ISysNoticeService;
 import cn.source.system.service.ISysUserService;
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

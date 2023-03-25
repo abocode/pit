@@ -7,7 +7,8 @@ import cn.source.common.utils.DateUtils;
 import cn.source.common.utils.file.FileUploadUtils;
 import cn.source.common.utils.http.HttpUtils;
 import cn.source.common.utils.uuid.IdUtils;
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -111,7 +112,7 @@ public class WxUtil {
         String tokenData = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid="+APPID+"&secret="+SECRET;
         // 返回的用户信息json字符串
         String resp = HttpUtils.sendGet(tokenData);
-        JSONObject jsonObject = JSONObject.parseObject(resp);
+        JSONObject jsonObject = JSON.parseObject(resp);
         return String.valueOf(jsonObject.get("access_token"));
     }
 
@@ -123,8 +124,8 @@ public class WxUtil {
         jsonData.put("code", code);
         // 返回的用户信息json字符串，此处调用Hutool工具类
         String resp = HttpUtil.post(path, jsonData.toJSONString());
-        JSONObject jsonObject = JSONObject.parseObject(resp);
-        JSONObject phoneInfo = JSONObject.parseObject(jsonObject.get("phone_info").toString());
+        JSONObject jsonObject = JSON.parseObject(resp);
+        JSONObject phoneInfo = JSON.parseObject(jsonObject.get("phone_info").toString());
         return String.valueOf(phoneInfo.get("phoneNumber"));
     }
 
@@ -132,7 +133,7 @@ public class WxUtil {
     public static Map obtainUserDetail(String accessToken, String openId){
         String openInfoUrl = "https://api.weixin.qq.com/cgi-bin/user/info?access_token="+accessToken+"&openid="+openId+"&lang=zh_CN";
         String resp = HttpUtils.sendGet(openInfoUrl);
-        JSONObject userDetail = JSONObject.parseObject(resp);
+        JSONObject userDetail = JSON.parseObject(resp);
         String openid = userDetail.getString("openid");
         Integer subscribe = userDetail.getInteger("subscribe");
         Integer subscribeTime = userDetail.getInteger("subscribe_time");
@@ -221,12 +222,12 @@ public class WxUtil {
         String tokenData = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid="+G_APPID+"&secret="+G_SECRET;
         // 返回的用户信息json字符串
         String resp = HttpUtils.sendGet(tokenData);
-        JSONObject jsonObject = JSONObject.parseObject(resp);
+        JSONObject jsonObject = JSON.parseObject(resp);
         System.out.println("token:"+jsonObject.get("access_token"));
         HttpUtils.sendGet(tokenData);
         String openInfoUrl = "https://api.weixin.qq.com/cgi-bin/user/info?access_token="+jsonObject.get("access_token")+"&openid=oM3w46__sVVjRWGUU4FGSwYOypTg&lang=zh_CN";
         String resp2 = HttpUtils.sendGet(openInfoUrl);
-        JSONObject userDetail = JSONObject.parseObject(resp2);
+        JSONObject userDetail = JSON.parseObject(resp2);
         System.out.println(userDetail);
     }
 }

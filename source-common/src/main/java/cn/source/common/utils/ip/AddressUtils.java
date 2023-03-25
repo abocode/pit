@@ -4,7 +4,8 @@ import cn.source.common.config.RuoYiConfig;
 import cn.source.common.constant.Constants;
 import cn.source.common.utils.StringUtils;
 import cn.source.common.utils.http.HttpUtils;
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,7 +42,7 @@ public class AddressUtils
                     log.error("获取地理位置异常 {}", ip);
                     return UNKNOWN;
                 }
-                JSONObject obj = JSONObject.parseObject(rspStr);
+                JSONObject obj = JSON.parseObject(rspStr);
                 String region = obj.getString("pro");
                 String city = obj.getString("city");
                 return String.format("%s %s", region, city);
@@ -68,7 +69,7 @@ public class AddressUtils
                     log.error("获取城市位置异常 {}", ip);
                     return UNKNOWN;
                 }
-                JSONObject obj = JSONObject.parseObject(rspStr);
+                JSONObject obj = JSON.parseObject(rspStr);
                 String region = obj.getString("pro");
                 city = obj.getString("city");
             }

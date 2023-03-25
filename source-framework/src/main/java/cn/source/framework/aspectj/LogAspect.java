@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.HandlerMapping;
-import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson2.JSON;
 import cn.source.common.annotation.Log;
 import cn.source.common.core.domain.model.LoginUser;
 import cn.source.common.enums.BusinessStatus;

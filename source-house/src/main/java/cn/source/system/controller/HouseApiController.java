@@ -9,7 +9,7 @@ import cn.source.system.domain.HouseRoom;
 import cn.source.system.domain.HouseVillage;
 import cn.source.system.service.IHouseRoomService;
 import cn.source.system.service.IHouseVillageService;
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson2.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

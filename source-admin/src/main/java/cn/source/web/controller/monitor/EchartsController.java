@@ -55,7 +55,7 @@ public class EchartsController {
                 // ipFlow进行ip去重
                 HashSet ipSet = new HashSet<>();
                 // 判断IP键是否存在
-                if(StringUtils.isNotNull(redisCache.getCacheObject(ipFlow))){
+                if(StringUtils.isNotNull(ipFlow) && StringUtils.isNotNull(redisCache.getCacheObject(ipFlow))){
                     ipSet = ((HashSet) redisCache.getCacheObject(ipFlow));
                 }
                 FlowModel indexFlowModel = new FlowModel();
