@@ -8,7 +8,7 @@
         <a href="https://gitee.com/open-source-byte/source-vue" target="_blank">
             <img src="https://gitee.com/open-source-byte/source-vue/badge/fork.svg?theme=dark">
         </a>
-	<a href="https://sourcebyte.vip" target="_blank"><img src="https://img.shields.io/badge/开源字节-v2.0.0-brightgreen.svg"></a>
+	<a href="https://sourcebyte.vip" target="_blank"><img src="https://img.shields.io/badge/开源字节-v4.0.0-brightgreen.svg"></a>
 	<a href=" http://boot.sourcebyte.vip" target="_blank"><img src="https://img.shields.io/github/license/mashape/apistatus.svg"></a>
 </p>
 
