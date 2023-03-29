@@ -13,7 +13,7 @@
     <description>开源字节</description>
 
     <properties>
-        <source.version>3.8.1</source.version>
+        <source.version>4.0.0</source.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
