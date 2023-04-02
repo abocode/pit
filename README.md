@@ -76,7 +76,7 @@
 8.  [订单管理系统](https://sourcebyte.vip)
 9.  [同城信息发布系统](https://sourcebyte.vip)
 10. [CRM 管理系统](https://sourcebyte.vip)
-11. [更多系统](https://sourcebyte.vip)
+11. [更多项目](https://sourcebyte.vip)
 
 ### 部分截图
 #### 1. 后台截图
