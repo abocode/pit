@@ -62,7 +62,7 @@
 16. 缓存监控：对系统的缓存信息查询，命令统计等。
 17. 在线构建器：拖动表单元素生成相应的HTML代码。
 18. 连接池监视：监视当前系统数据库连接池状态，可进行分析SQL找出系统性能瓶颈。
-19. [更多系统](http://boot.sourcebyte.vip)
+19. [更多功能](http://boot.sourcebyte.vip)
 
 ### 项目扩展 
 
@@ -76,7 +76,7 @@
 8.  [订单管理系统](https://sourcebyte.vip)
 9.  [同城信息发布系统](https://sourcebyte.vip)
 10. [CRM 管理系统](https://sourcebyte.vip)
-11. [更多业务功能](https://sourcebyte.vip)
+11. [更多系统](https://sourcebyte.vip)
 
 ### 部分截图
 #### 1. 后台截图
