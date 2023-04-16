@@ -3,12 +3,17 @@ package cn.source.system.controller;
 import cn.source.common.constant.HttpStatus;
 import cn.source.common.core.controller.BaseController;
 import cn.source.common.core.domain.AjaxResult;
+import cn.source.common.core.domain.entity.SysUser;
 import cn.source.common.core.page.TableDataInfo;
+import cn.source.common.utils.DateUtils;
 import cn.source.common.utils.StringUtils;
+import cn.source.system.domain.HouseEvaluate;
 import cn.source.system.domain.HouseRoom;
 import cn.source.system.domain.HouseVillage;
+import cn.source.system.service.IHouseEvaluateService;
 import cn.source.system.service.IHouseRoomService;
 import cn.source.system.service.IHouseVillageService;
+import cn.source.system.service.ISysUserService;
 import com.alibaba.fastjson2.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +35,12 @@ public class HouseApiController extends BaseController {
 
     @Autowired
     private IHouseRoomService houseRoomService;
+
+    @Autowired
+    private IHouseEvaluateService houseEvaluateService;
+
+    @Autowired
+    private ISysUserService userService;
 
     /**
      * @Description: 获取小区列表
@@ -132,4 +143,39 @@ public class HouseApiController extends BaseController {
         return getDataTable(list);
     }
 
+    /**
+     * 查询房源评价列表
+     * @param houseId
+     * @return
+     */
+    @GetMapping("/selectHouseEvals")
+    public AjaxResult selectHouseEvals(Long houseId)
+    {
+        HouseEvaluate houseEvaluate = new HouseEvaluate();
+        houseEvaluate.setHouseId(houseId);
+        houseEvaluate.setState(1);//只查询显示的
+        List<HouseEvaluate> list = houseEvaluateService.selectHouseEvaluateList(houseEvaluate);
+        return AjaxResult.success(list);
+    }
+
+    /**
+     * 新增评价
+     * @param houseId
+     * @param evalu
+     * @return
+     */
+    @GetMapping("/saveHouseEvals")
+    public AjaxResult saveHouseEvals(Long houseId,String evalu,Long userId)
+    {
+        HouseEvaluate houseEvaluate = new HouseEvaluate();
+        houseEvaluate.setHouseId(houseId);
+        houseEvaluate.setEvaluate(evalu);
+        houseEvaluate.setState(1);//只查询显示的
+        houseEvaluate.setCreateTime(DateUtils.getNowDate());
+        houseEvaluate.setEvalUserId(userId);
+        SysUser sysUser = userService.selectUserById(userId);
+        houseEvaluate.setEvalUser(sysUser.getUserName());
+        houseEvaluateService.insertHouseEvaluate(houseEvaluate);
+        return AjaxResult.success(houseEvaluate);
+    }
 }
