@@ -9,11 +9,9 @@ import cn.source.common.utils.DateUtils;
 import cn.source.common.utils.StringUtils;
 import cn.source.system.domain.HouseEvaluate;
 import cn.source.system.domain.HouseRoom;
+import cn.source.system.domain.HouseUser;
 import cn.source.system.domain.HouseVillage;
-import cn.source.system.service.IHouseEvaluateService;
-import cn.source.system.service.IHouseRoomService;
-import cn.source.system.service.IHouseVillageService;
-import cn.source.system.service.ISysUserService;
+import cn.source.system.service.*;
 import com.alibaba.fastjson2.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -41,6 +39,9 @@ public class HouseApiController extends BaseController {
 
     @Autowired
     private ISysUserService userService;
+
+    @Autowired
+    private IHouseUserService houseUserService;
 
     /**
      * @Description: 获取小区列表
@@ -149,13 +150,14 @@ public class HouseApiController extends BaseController {
      * @return
      */
     @GetMapping("/selectHouseEvals")
-    public AjaxResult selectHouseEvals(Long houseId)
+    public TableDataInfo selectHouseEvals(Long houseId)
     {
         HouseEvaluate houseEvaluate = new HouseEvaluate();
         houseEvaluate.setHouseId(houseId);
         houseEvaluate.setState(1);//只查询显示的
+        startPage();
         List<HouseEvaluate> list = houseEvaluateService.selectHouseEvaluateList(houseEvaluate);
-        return AjaxResult.success(list);
+        return getDataTable(list);
     }
 
     /**
@@ -177,5 +179,20 @@ public class HouseApiController extends BaseController {
         houseEvaluate.setEvalUser(sysUser.getUserName());
         houseEvaluateService.insertHouseEvaluate(houseEvaluate);
         return AjaxResult.success(houseEvaluate);
+    }
+    /**
+     * 新增评价鉴权
+     * @param houseId
+     * @param userId
+     * @return
+     */
+    @GetMapping("/checkAuthEvals")
+    public AjaxResult checkAuthEvals(Long houseId,Long userId)
+    {
+        HouseUser houseUser = new HouseUser();
+        houseUser.setHouseId(houseId);
+        houseUser.setUserId(userId);
+        List<HouseUser> list = houseUserService.selectHouseUserList(houseUser);
+        return AjaxResult.success(list);
     }
 }
