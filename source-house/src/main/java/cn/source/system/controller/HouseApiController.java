@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @Description: cms api控制类
+ * @Description: house api控制类
  * @author: 詹Sir
  */
 @RestController
@@ -180,8 +180,9 @@ public class HouseApiController extends BaseController {
         houseEvaluateService.insertHouseEvaluate(houseEvaluate);
         return AjaxResult.success(houseEvaluate);
     }
+
     /**
-     * 新增评价鉴权
+     * 评价鉴权，只有历史租客才能评价
      * @param houseId
      * @param userId
      * @return
