@@ -68,15 +68,16 @@
 
 1.  [内容管理系统](https://sourcebyte.vip)
 2.  [在线租房系统](http://43.142.193.197:8080/house)
-3.  [开源商城系统](https://sourcebyte.vip)
+3.  [友源商城系统](https://sourcebyte.vip)
 4.  [数字化乡村系统](http://8.141.150.22)
-5.  [相亲社区系统](http://43.142.193.197:8080/love)
-6.  [家居服务系统](http://43.142.193.197:8080/home)
-7.  [集训营管理系统](https://sourcebyte.vip)
+5.  [相亲交友系统](http://43.142.193.197:8080/love)
+6.  [家居维修系统](http://43.142.193.197:8080/home)
+7.  [考研集训营系统](https://sourcebyte.vip)
 8.  [订单管理系统](https://sourcebyte.vip)
-9.  [同城信息发布系统](https://sourcebyte.vip)
+9.  [同城信息系统](https://sourcebyte.vip)
 10. [CRM 管理系统](https://sourcebyte.vip)
-11. [更多项目](https://sourcebyte.vip)
+10. [CSM 云抄表租赁管理系统](https://sourcebyte.vip)
+12. [更多优质项目](https://sourcebyte.vip)
 
 ### 部分截图
 #### 1. 后台截图
