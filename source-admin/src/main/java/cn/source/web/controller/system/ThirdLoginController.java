@@ -115,9 +115,13 @@ public class ThirdLoginController extends BaseController
     {
         AjaxResult ajax = AjaxResult.success();
         String msg = "登录成功";
-        if (StringUtils.isEmpty(loginBody.getUsername())){
-            msg = "用户名不能为空";
+        if (StringUtils.isEmpty(loginBody.getUsername()) || StringUtils.isEmpty(loginBody.getCode())){
+            msg = "用户名/code不能为空";
             return error(msg);
+        }
+        if (!redisCache.getCacheObject(Constants.WX_PHONE_NUM_KEY + loginBody.getUsername()).equals(loginBody.getCode())){
+           msg = "code过期/错误";
+           return error(msg);
         }
         // 判断是否为新用户
         SysUser sysUser = userService.selectUserByUserName(loginBody.getUsername());
