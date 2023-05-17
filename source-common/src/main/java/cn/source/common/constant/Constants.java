@@ -80,6 +80,16 @@ public class Constants
     public static final String RATE_LIMIT_KEY = "rate_limit:";
 
     /**
+     * 微信获取手机号 redis key
+     */
+    public static final String WX_PHONE_NUM_KEY = "wx_phone:";
+
+    /**
+     * 微信登录验证有效期（分钟）
+     */
+    public static final Integer WX_PHONE_CODE_EXPIRATION = 5;
+
+    /**
      * 验证码有效期（分钟）
      */
     public static final Integer CAPTCHA_EXPIRATION = 2;

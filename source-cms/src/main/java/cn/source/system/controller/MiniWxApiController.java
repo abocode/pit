@@ -1,5 +1,6 @@
 package cn.source.system.controller;
 
+import cn.source.common.constant.Constants;
 import cn.source.common.core.controller.BaseController;
 import cn.source.common.core.domain.AjaxResult;
 import cn.source.common.core.redis.RedisCache;
@@ -62,6 +63,7 @@ public class MiniWxApiController extends BaseController {
         // Object token = getAccessToken();
         Object token = WxUtil.obtainAccessToken(APPID, SECRET);
         String phoneNum = WxUtil.getPhoneNum(token,code);
+        redisCache.setCacheObject(Constants.WX_PHONE_NUM_KEY + phoneNum, code, Constants.WX_PHONE_CODE_EXPIRATION, TimeUnit.MINUTES);
         ajax.put("phoneNum",phoneNum);
         return ajax;
     }
