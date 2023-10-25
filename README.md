@@ -75,9 +75,9 @@
 7.  [考研集训营系统](https://sourcebyte.vip)
 8.  [订单管理系统](https://sourcebyte.vip)
 9.  [同城信息系统](https://sourcebyte.vip)
-10. [CRM 管理系统](https://sourcebyte.vip)
-10. [CSM 云抄表租赁管理系统](https://sourcebyte.vip)
-12. [更多优质项目](https://sourcebyte.vip)
+10. [客户管理系统(CRM)](https://sourcebyte.vip)
+10. [客户服务系统(CSM)](https://sourcebyte.vip)
+12. [官网](https://sourcebyte.vip)
 
 ### 部分截图
 #### 1. 后台截图
