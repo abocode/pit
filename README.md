@@ -80,7 +80,7 @@ pit是居于开源字节和若依开发的一套开源的快速开发平台!
 ### QQ交流群
 |  2群(140586555) | 
 | :------: | 
-| <img src="https://gitee.com/abocode-source/pit/tree/master/doc/images/qq01.png" width="200px">|
+| <img src="doc/images/qq01.png" width="200px">|
 
 ### 结语
 
