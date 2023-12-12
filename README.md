@@ -1,7 +1,7 @@
 <p align="center">
 	<img alt="logo" src="https://sourcebyte.vip/assets/logo_c_64.5eb3acc5.png">
 </p>
-<h1 align="center" style="margin: 30px 0 30px; font-weight: bold;">Source-Vue v4.0.0</h1>
+<h1 align="center" style="margin: 30px 0 30px; font-weight: bold;">pit v3.0.0</h1>
 <h4 align="center">基于SpringBoot+Vue前后端分离的Java快速开发框架</h4>
 
 ### 平台简介
@@ -80,7 +80,7 @@ pit是居于开源字节和若依开发的一套开源的快速开发平台!
 ### QQ交流群
 |  2群(140586555) | 
 | :------: | 
-| <img src="https://gitee.com/open-source-byte/source-vue/raw/master/doc/qq01.png" width="200px">|
+| <img src="https://gitee.com/abocode-source/pit/raw/master/doc/images/qq01.png" width="200px">|
 
 ### 结语
 
